@@ -1,1 +1,2 @@
-# Java-Service-Tree-Framework-All-In-One
+# JavaServiceTree-Middle-ProxyProject
+ProxyGateway Project By JavaServiceTree (Developer Portal)
