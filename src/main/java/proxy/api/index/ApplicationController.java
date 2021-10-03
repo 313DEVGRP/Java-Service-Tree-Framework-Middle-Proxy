@@ -6,16 +6,18 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.keycloak.KeycloakSecurityContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import proxy.api.security.Identity;
+import org.springframework.web.bind.annotation.ResponseBody;
+import proxy.api.config.security.Identity;
 
 /**
  * @author <a href="mailto:psilva@redhat.com">Pedro Igor</a>
  */
-@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @Controller
 public class ApplicationController {
 
@@ -64,4 +66,25 @@ public class ApplicationController {
     private KeycloakSecurityContext getKeycloakSecurityContext() {
         return (KeycloakSecurityContext) request.getAttribute(KeycloakSecurityContext.class.getName());
     }
+
+    @Autowired
+    @Qualifier("oAuth2RestTemplateByUser")
+    OAuth2RestTemplate oAuth2RestTemplateByUser;
+
+    @RequestMapping(value = "/auth-user/test", method = RequestMethod.GET)
+    @ResponseBody
+    public String getJavaServiceTreeFrameworkAuthUser() throws ServletException {
+        String apiUrl = "http://www.313.co.kr/com/ext/jstree/springHibernate/core/getChildNode.do?c_id=2";
+        String resultStr =  oAuth2RestTemplateByUser.getForObject(apiUrl, String.class);
+        return resultStr;
+    }
+
+    @RequestMapping(value = "/auth-admin/test", method = RequestMethod.GET)
+    @ResponseBody
+    public String getJavaServiceTreeFrameworkAuthAdmin() throws ServletException {
+        String apiUrl = "http://www.313.co.kr/com/ext/jstree/springHibernate/core/getChildNode.do?c_id=1";
+        String resultStr =  oAuth2RestTemplateByUser.getForObject(apiUrl, String.class);
+        return resultStr;
+    }
+
 }

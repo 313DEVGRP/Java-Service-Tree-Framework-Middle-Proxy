@@ -20,7 +20,7 @@ targetCompatibility = 1.8
 
 import org.apache.tools.ant.taskdefs.condition.Os
 ext {
-    image = "313devgrp/jstree-service-framework-proxy-api"
+    image = "313devgrp/java-service-tree-framework-all-in-one"
 
     artifactType = System.getenv("ARTIFACT_TYPE") ? System.getenv("ARTIFACT_TYPE").toUpperCase() : "SNAPSHOT"
     repositoryType = "${artifactType}".equalsIgnoreCase("RELEASE") ? "release" : "snapshot"
@@ -147,6 +147,7 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-freemarker')
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.boot:spring-boot-starter-security')
+    implementation('org.springframework.security.oauth:spring-security-oauth2:1.0.5.RELEASE')
 
     implementation('org.keycloak:keycloak-spring-security-adapter')
     implementation('org.keycloak:keycloak-authz-client')

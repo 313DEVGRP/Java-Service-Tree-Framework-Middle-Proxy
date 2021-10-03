@@ -1,4 +1,4 @@
-package proxy.api.security;
+package proxy.api.config.security;
 
 
 import java.io.InputStream;
@@ -46,7 +46,9 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
         http.logout().logoutSuccessUrl("/home")
                 .and()
                 .authorizeRequests()
-                .antMatchers("/**").hasAuthority("admin");
+                //.antMatchers("/**").hasRole("USER"); // KeyCloak: ROLE_USER
+                .antMatchers("/auth-user/**").hasRole("USER")
+                .antMatchers("/auth-admin/**").hasRole("ADMIN");
     }
 
     /**

@@ -2,10 +2,10 @@
   "realm": "master",
   "auth-server-url": "http://192.168.25.46:8585/auth/",
   "ssl-required": "none",
-  "resource": "jstreeProxyAPI",
+  "resource": "javaServiceTreeFrameworkAllInOne",
   "verify-token-audience": true,
   "credentials": {
-    "secret": "fb413a87-0a7f-40f8-8292-309d24fcf6f4"
+    "secret": "dafd4992-a7f6-4e8f-b809-b2bafad04fa8"
   },
   "confidential-port": 0,
   "policy-enforcer": {}
