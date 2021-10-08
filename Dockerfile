@@ -36,4 +36,4 @@ ENV JAVA_OPTS="-Xmx4g -Xms4g -javaagent:/usr/local/tomcat/lib/scouter.agent.jar 
 VOLUME /tmp
 ARG JAR_FILE
 COPY ${JAR_FILE} javaServiceTreeFramework.jar
-ENTRYPOINT ["java", "-Dspring.profiles.active=dev", "-Djava.security.edg=file:/dev/./urandom","-jar","/javaServiceTreeFramework.jar"]
+ENTRYPOINT ["java", "-Dspring.profiles.active=live", "-Djava.security.edg=file:/dev/./urandom","-jar","/javaServiceTreeFramework.jar"]

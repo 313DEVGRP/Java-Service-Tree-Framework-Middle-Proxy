@@ -7,13 +7,19 @@ import javax.servlet.http.HttpServletRequest;
 import org.keycloak.KeycloakSecurityContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.*;
+import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 import proxy.api.config.security.Identity;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author <a href="mailto:psilva@redhat.com">Pedro Igor</a>
@@ -49,13 +55,13 @@ public class ApplicationController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String handleHome(Model model) throws ServletException {
+    public String handleHome(Model model) {
         configCommonAttributes(model);
         return "home";
     }
 
     @RequestMapping(value = "/accessDenied", method = RequestMethod.GET)
-    public String handleAccessDenied() throws ServletException {
+    public String handleAccessDenied() {
         return "access-denied";
     }
 
@@ -68,23 +74,29 @@ public class ApplicationController {
     }
 
     @Autowired
-    @Qualifier("oAuth2RestTemplateByUser")
-    OAuth2RestTemplate oAuth2RestTemplateByUser;
+    @Qualifier("oauth2RestTemplateByUser")
+    OAuth2RestTemplate oauth2RestTemplate;
 
     @RequestMapping(value = "/auth-user/test", method = RequestMethod.GET)
     @ResponseBody
-    public String getJavaServiceTreeFrameworkAuthUser() throws ServletException {
-        String apiUrl = "http://www.313.co.kr/com/ext/jstree/springHibernate/core/getChildNode.do?c_id=2";
-        String resultStr =  oAuth2RestTemplateByUser.getForObject(apiUrl, String.class);
+    public String getJavaServiceTreeFrameworkAuthUser() {
+        String apiUrl = "http://313.co.kr/com/ext/jstree/springHibernate/core/getChildNode.do?c_id=2";
+        String resultStr = oauth2RestTemplate.getForObject(apiUrl, String.class);
         return resultStr;
     }
 
     @RequestMapping(value = "/auth-admin/test", method = RequestMethod.GET)
     @ResponseBody
-    public String getJavaServiceTreeFrameworkAuthAdmin() throws ServletException {
-        String apiUrl = "http://www.313.co.kr/com/ext/jstree/springHibernate/core/getChildNode.do?c_id=1";
-        String resultStr =  oAuth2RestTemplateByUser.getForObject(apiUrl, String.class);
-        return resultStr;
+    public String getJavaServiceTreeFrameworkAuthAdmin() {
+        String apiUrl = "http://313.co.kr:7003/roles/sync";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
+        headers.set(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
+        HttpEntity request = new HttpEntity<>(headers);
+
+        ResponseEntity<String> response = oauth2RestTemplate.exchange(apiUrl, HttpMethod.POST, request, String.class);
+        return response.getBody();
     }
 
 }
