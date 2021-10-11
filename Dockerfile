@@ -1,4 +1,4 @@
-FROM openjdk:8-jre-alpine
+FROM openjdk:8-jre
 MAINTAINER 313DEVGRP <313@313.co.kr>
 
 RUN apk update && apk add wget
