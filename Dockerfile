@@ -5,7 +5,7 @@ RUN apk update && apk add wget
 
 RUN wget http://www.313.co.kr/nexus/content/groups/public/313devgrp/packetbeat/7.4.2-linux/packetbeat-7.4.2-linux-x86_64.tar.gz
 RUN tar zxvf packetbeat-7.4.2-linux-x86_64.tar.gz
-ADD $JENKINS_HOME/workspace/$JOB_NAME/script/yml/monitoring/client/packetbeat.yml ./packetbeat-7.4.2-linux-x86_64/packetbeat.yml
+ADD $WORKSPACE/script/yml/monitoring/client/packetbeat.yml ./packetbeat-7.4.2-linux-x86_64/packetbeat.yml
 
 RUN wget http://www.313.co.kr/nexus/content/groups/public/313devgrp/topbeat/1.3.1/topbeat-1.3.1-x86_64.tar.gz
 RUN tar zxvf topbeat-1.3.1-x86_64.tar.gz
