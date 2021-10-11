@@ -157,5 +157,6 @@ docker {
     name "${image}"
     tags "${project.version}"
     files tasks.bootJar.outputs.files
-    buildArgs(['JAR_FILE': tasks.bootJar.outputs.files.singleFile.name])
+    buildArgs(['JAR_FILE': tasks.bootJar.outputs.files.singleFile.name,
+                'JENKINS_WORKSPACE_DIR': ''])
 }
