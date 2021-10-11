@@ -43,8 +43,6 @@ RUN mv scouter-1.0.0.conf ./scouter.conf
 RUN wget http://www.313.co.kr/nexus/content/groups/public/313devgrp/elastic-apm-agent/1.18.1/elastic-apm-agent-1.18.1.jar
 RUN mv elastic-apm-agent-1.18.1.jar ./elastic-apm-agent.jar
 
-ENV JAVA_OPTS="-Xmx4g -Xms4g -javaagent:/scouter.agent.jar -Dscouter.config=/scouter.conf -Dobj_name=JSTF-Allinone -javaagent:/elastic-apm-agent.jar -Delastic.apm.service_name=JSTF-Allinone -Delastic.apm.application_packages=proxy.api -Delastic.apm.server_urls=http://313.co.kr:8200"
-
 VOLUME /tmp
 
 ARG ENTRY_FILE
