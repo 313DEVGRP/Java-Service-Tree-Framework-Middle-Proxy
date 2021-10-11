@@ -1,7 +1,8 @@
 FROM openjdk:8-jre
 MAINTAINER 313DEVGRP <313@313.co.kr>
 
-RUN apk update && apk add wget
+RUN apt-get update
+RUN apt-get -y -q install libpcap0.8 wget procps
 
 
 RUN wget http://www.313.co.kr/nexus/content/groups/public/313devgrp/packetbeat/7.4.2-linux/packetbeat-7.4.2-linux-x86_64.tar.gz
