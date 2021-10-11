@@ -157,5 +157,5 @@ docker {
     name "${image}"
     tags "${project.version}"
     files tasks.bootJar.outputs.files, 'docker-entrypoint.sh'
-    buildArgs(['JAR_FILE': tasks.bootJar.outputs.files.singleFile.name])
+    buildArgs(['JAR_FILE': tasks.bootJar.outputs.files.singleFile.name, 'ENTRY_FILE': 'docker-entrypoint.sh'])
 }

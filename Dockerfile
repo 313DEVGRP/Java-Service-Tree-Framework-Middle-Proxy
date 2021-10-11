@@ -46,6 +46,14 @@ RUN mv elastic-apm-agent-1.18.1.jar ./elastic-apm-agent.jar
 ENV JAVA_OPTS="-Xmx4g -Xms4g -javaagent:/scouter.agent.jar -Dscouter.config=/scouter.conf -Dobj_name=JSTF-Allinone -javaagent:/elastic-apm-agent.jar -Delastic.apm.service_name=JSTF-Allinone -Delastic.apm.application_packages=proxy.api -Delastic.apm.server_urls=http://313.co.kr:8200"
 
 VOLUME /tmp
+
+ARG ENTRY_FILE
+COPY ${ENTRY_FILE} docker-entrypoint.sh
+
 ARG JAR_FILE
 COPY ${JAR_FILE} javaServiceTreeFramework.jar
-ENTRYPOINT ["java", "-Dspring.profiles.active=live", "-Djava.security.edg=file:/dev/./urandom","-jar","/javaServiceTreeFramework.jar"]
+
+RUN chmod +x /docker-entrypoint.sh
+
+ENTRYPOINT ["sh","/docker-entrypoint.sh"]
+CMD ["start"]
