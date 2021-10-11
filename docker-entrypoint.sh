@@ -1,19 +1,19 @@
 #!/bin/sh
 
 #packetbeat start
-/packetbeat-7.4.2-linux-x86_64/packetbeat -e -c /packetbeat-7.4.2-linux-x86_64/packetbeat.yml &
+./packetbeat-7.4.2-linux-x86_64/packetbeat -e -c /packetbeat-7.4.2-linux-x86_64/packetbeat.yml &
 
 #topbeat start
-/topbeat-1.3.1-x86_64/topbeat -e -c /topbeat-1.3.1-x86_64/topbeat.yml &
+./topbeat-1.3.1-x86_64/topbeat -e -c /topbeat-1.3.1-x86_64/topbeat.yml &
 
 #metricbeat start
-/metricbeat-7.4.2-linux-x86_64/metricbeat -e -c /metricbeat-7.4.2-linux-x86_64/metricbeat.yml &
+./metricbeat-7.4.2-linux-x86_64/metricbeat -e -c /metricbeat-7.4.2-linux-x86_64/metricbeat.yml &
 
 #heartbeat start
-/heartbeat-7.4.2-linux-x86_64/heartbeat -e -c /heartbeat-7.4.2-linux-x86_64/heartbeat.yml &
+./heartbeat-7.4.2-linux-x86_64/heartbeat -e -c /heartbeat-7.4.2-linux-x86_64/heartbeat.yml &
 
 #filebeat start
-/filebeat-7.4.2-linux-x86_64/filebeat -e -c /filebeat-7.4.2-linux-x86_64/filebeat.yml &
+./filebeat-7.4.2-linux-x86_64/filebeat -e -c /filebeat-7.4.2-linux-x86_64/filebeat.yml &
 
 set -e
 
