@@ -55,7 +55,7 @@ ext {
     }
 }
 
-group = "313devgrp.jstf"
+group = "313devgrp"
 version = "${majorVersion}.${minorVersion}.${patchVersion}"
 
 bootJar {
