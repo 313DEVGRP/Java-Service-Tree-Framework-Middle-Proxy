@@ -1,5 +1,5 @@
 server:
-  port: 31313
+  port: 13131
 
 spring:
   profiles:
