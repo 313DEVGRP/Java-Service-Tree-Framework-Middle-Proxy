@@ -36,7 +36,7 @@ RUN mv filebeat-1.0.0.yml ./filebeat-7.4.2-linux-x86_64/filebeat.yml
 
 RUN wget http://www.313.co.kr/nexus/content/groups/public/313devgrp/scouter/2.8.1/scouter-2.8.1.jar
 RUN mv scouter-2.8.1.jar ./scouter.agent.jar
-RUN wget http://www.313.co.kr/nexus/content/repositories/StandardProject/313devgrp/scouter/1.0.0/scouter-1.1.1.conf
+RUN wget http://www.313.co.kr/nexus/content/repositories/StandardProject/313devgrp/scouter/1.1.1/scouter-1.1.1.conf
 RUN mv scouter-1.1.1.conf ./scouter.conf
 
 
