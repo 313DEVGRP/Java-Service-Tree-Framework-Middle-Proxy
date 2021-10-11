@@ -2,7 +2,6 @@ package proxy.api.config.security;
 
 
 import java.util.List;
-
 import org.keycloak.AuthorizationContext;
 import org.keycloak.KeycloakSecurityContext;
 import org.keycloak.representations.idm.authorization.Permission;

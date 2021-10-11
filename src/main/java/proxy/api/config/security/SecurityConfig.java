@@ -2,7 +2,6 @@ package proxy.api.config.security;
 
 
 import java.io.InputStream;
-
 import org.keycloak.adapters.KeycloakConfigResolver;
 import org.keycloak.adapters.KeycloakDeployment;
 import org.keycloak.adapters.KeycloakDeploymentBuilder;
