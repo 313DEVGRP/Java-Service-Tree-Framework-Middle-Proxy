@@ -1,2 +1,10 @@
-server:
-    port: 313
+tokenUrl: http://313.co.kr:8585/auth/realms/master/protocol/openid-connect/token
+clientId: javaServiceTreeFrameworkAllInOne
+clientSecret: dafd4992-a7f6-4e8f-b809-b2bafad04fa8
+accessTokenUser: integrationuser
+accessTokenPass: qwe123
+
+spring:
+  application:
+  name: javaServiceTreeFrameworkAllInOne
+

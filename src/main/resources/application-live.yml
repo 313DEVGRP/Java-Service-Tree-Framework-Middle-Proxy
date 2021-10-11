@@ -1,0 +1,6 @@
+server:
+  port: 31313
+
+spring:
+  profiles:
+    active: live

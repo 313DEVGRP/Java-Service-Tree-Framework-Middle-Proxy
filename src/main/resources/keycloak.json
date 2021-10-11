@@ -1,6 +1,6 @@
 {
   "realm": "master",
-  "auth-server-url": "http://192.168.25.46:8585/auth/",
+  "auth-server-url": "http://313.co.kr:8585/auth/",
   "ssl-required": "none",
   "resource": "javaServiceTreeFrameworkAllInOne",
   "verify-token-audience": true,
