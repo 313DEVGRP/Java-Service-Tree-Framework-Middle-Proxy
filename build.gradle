@@ -2,15 +2,12 @@ buildscript {
     repositories {
         mavenCentral()
     }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.5.4")
-    }
 }
 
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.5.4'
-    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'org.springframework.boot' version '2.3.7.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
     id 'com.palantir.docker' version '0.28.0'
     id 'maven-publish'
 }
@@ -135,21 +132,31 @@ repositories {
 
 dependencyManagement {
     imports {
-        mavenBom "org.springframework.boot:spring-boot-starter-parent:2.0.3.RELEASE"
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR9"
         mavenBom "org.keycloak.bom:keycloak-adapter-bom:12.0.4"
     }
 }
 
 dependencies {
+
     implementation('org.projectlombok:lombok')
 
-    implementation('org.springframework.boot:spring-boot-starter-freemarker')
+    // spring
     implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.springframework.boot:spring-boot-starter-aop')
+    implementation('org.springframework.boot:spring-boot-starter-validation')
+    implementation('org.springframework.boot:spring-boot-starter-freemarker')
+
+    // security
     implementation('org.springframework.boot:spring-boot-starter-security')
     implementation('org.springframework.security.oauth:spring-security-oauth2:2.3.8.RELEASE')
 
+    // keycloak
     implementation('org.keycloak:keycloak-spring-security-adapter')
     implementation('org.keycloak:keycloak-authz-client')
+
+    // zuul proxy
+    implementation('org.springframework.cloud:spring-cloud-starter-netflix-zuul')
 
 }
 

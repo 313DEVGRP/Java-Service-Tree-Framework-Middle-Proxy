@@ -4,3 +4,18 @@ server:
 spring:
   profiles:
     active: dev
+
+zuul:
+  routes:
+    jenkins:
+      path: /jenkins/**
+      url: http://192.168.25.46:38080
+      sensitiveHeaders: Cookie,Set-Cookie
+    elkindex:
+      path: /auth-admin/elk/index/**
+      url: http://192.168.25.46:9200/_cat/indices
+      sensitiveHeaders: Cookie,Set-Cookie
+
+ribbon:
+  eureka:
+    enabled: false
