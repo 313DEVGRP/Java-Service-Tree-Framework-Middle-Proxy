@@ -1,6 +1,6 @@
 spring:
   application:
-  name: javaServiceTreeFrameworkAllInOne
+    name: javaServiceTreeFrameworkAllInOne
 
 tokenUrl: http://313.co.kr:8585/auth/realms/master/protocol/openid-connect/token
 clientId: javaServiceTreeFrameworkAllInOne
