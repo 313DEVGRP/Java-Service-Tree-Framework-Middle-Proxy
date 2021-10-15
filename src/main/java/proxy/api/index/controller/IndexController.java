@@ -1,5 +1,4 @@
-package proxy.api.index;
-
+package proxy.api.index.controller;
 
 import org.keycloak.KeycloakSecurityContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author <a href="mailto:psilva@redhat.com">Pedro Igor</a>
  */
 @Controller
-public class ApplicationController {
+public class IndexController {
 
     @Autowired
     private HttpServletRequest request;
