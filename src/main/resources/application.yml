@@ -1,6 +1,15 @@
 spring:
   application:
     name: javaServiceTreeFrameworkAllInOne
+  zipkin:
+    enabled: true
+    service.name: zipkin-service
+    sender.type: web
+    base-url: http://192.168.25.46:9411
+  sleuth:
+    enabled: true
+    sampler:
+      probability: 1.0
 
 tokenUrl: http://313.co.kr:8585/auth/realms/master/protocol/openid-connect/token
 clientId: javaServiceTreeFrameworkAllInOne

@@ -1,6 +1,8 @@
 package proxy.api.index.controller;
 
 import org.keycloak.KeycloakSecurityContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.*;
@@ -20,6 +22,8 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 public class IndexController {
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private HttpServletRequest request;
@@ -83,6 +87,7 @@ public class IndexController {
     @ResponseBody
     public String getJavaServiceTreeFrameworkAuthAdmin() {
         String apiUrl = "http://313.co.kr:7003/roles/sync";
+        logger.info(" >>> GET ");
 
         HttpHeaders headers = new HttpHeaders();
         headers.set(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
