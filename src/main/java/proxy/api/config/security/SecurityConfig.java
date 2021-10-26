@@ -44,10 +44,12 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
         super.configure(http);
         http.logout().logoutSuccessUrl("/home")
                 .and()
+
                 .authorizeRequests()
                 //.antMatchers("/**").hasRole("USER"); // KeyCloak: ROLE_USER
-                .antMatchers("/auth-user/**").hasRole("USER")
-                .antMatchers("/auth-admin/**").hasRole("ADMIN");
+                .requestMatchers(req-> req.getRequestURI().contains("auth-anon")).permitAll()
+                .requestMatchers(req-> req.getRequestURI().contains("auth-user")).hasRole("USER")
+                .requestMatchers(req-> req.getRequestURI().contains("auth-admin")).hasRole("ADMIN");
                 //패턴 : /인증인가/컴포넌트이름/액션
     }
 

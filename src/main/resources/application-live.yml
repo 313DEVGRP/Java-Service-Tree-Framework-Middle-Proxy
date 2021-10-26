@@ -6,14 +6,18 @@ spring:
     active: live
 
 zuul:
+  ignoredServices: "*"
+  host:
+    connect-timeout-millis: 30000
+    socket-timeout-millis: 30000
   routes:
     arms:
       path: /aRMS/**
-      url: http://192.168.25.42/aRMS
+      url: http://www.313.co.kr/aRMS
       sensitiveHeaders: Cookie,Set-Cookie
     devops:
       path: /DeveloperPortal/Publish/**
-      url: http://192.168.25.42/aRMS/DeveloperPortal/Publish
+      url: http://www.313.co.kr/aRMS/DeveloperPortal/Publish
       sensitiveHeaders: Cookie,Set-Cookie
     jenkins:
       path: /jenkins/**
