@@ -1,5 +1,5 @@
 server:
-  port: 80
+  port: 13131
 
 spring:
   profiles:
@@ -12,8 +12,8 @@ zuul:
     socket-timeout-millis: 30000
   routes:
     arms:
-      path: /aRMS/**
-      url: http://www.313.co.kr/aRMS
+      path: /arms/**
+      url: http://www.a-rms.net/arms
       sensitiveHeaders: Cookie,Set-Cookie
     devops:
       path: /DeveloperPortal/Publish/**
