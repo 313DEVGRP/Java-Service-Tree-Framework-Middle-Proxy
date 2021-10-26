@@ -7,6 +7,14 @@ spring:
 
 zuul:
   routes:
+    arms:
+      path: /aRMS/**
+      url: http://192.168.25.42/aRMS
+      sensitiveHeaders: Cookie,Set-Cookie
+    devops:
+      path: /DeveloperPortal/Publish/**
+      url: http://192.168.25.42/aRMS/DeveloperPortal/Publish
+      sensitiveHeaders: Cookie,Set-Cookie
     jenkins:
       path: /jenkins/**
       url: http://192.168.25.46:38080
