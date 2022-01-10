@@ -1,7 +1,5 @@
 package proxy.api.config.security;
 
-
-import java.io.InputStream;
 import org.keycloak.adapters.KeycloakConfigResolver;
 import org.keycloak.adapters.KeycloakDeployment;
 import org.keycloak.adapters.KeycloakDeploymentBuilder;
@@ -15,6 +13,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy;
 import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
+
+import java.io.InputStream;
 
 /**
  * @author <a href="mailto:psilva@redhat.com">Pedro Igor</a>
@@ -42,15 +42,16 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
-        http.logout().logoutSuccessUrl("/home")
-                .and()
-
-                .authorizeRequests()
-                //.antMatchers("/**").hasRole("USER"); // KeyCloak: ROLE_USER
-                .requestMatchers(req-> req.getRequestURI().contains("auth-anon")).permitAll()
-                .requestMatchers(req-> req.getRequestURI().contains("auth-user")).hasRole("USER")
-                .requestMatchers(req-> req.getRequestURI().contains("auth-admin")).hasRole("ADMIN");
-                //패턴 : /인증인가/컴포넌트이름/액션
+        http
+        .cors().disable()
+        .csrf().disable()
+        .authorizeRequests()
+        //.antMatchers("/**").hasRole("USER"); // KeyCloak: ROLE_USER
+        .requestMatchers(req-> req.getRequestURI().contains("auth-anon")).permitAll()
+        .requestMatchers(req-> req.getRequestURI().contains("auth-user")).hasRole("USER")
+        .requestMatchers(req-> req.getRequestURI().contains("auth-admin")).hasRole("ADMIN")
+        .requestMatchers(req-> req.getRequestURI().contains("auth-check")).hasAnyRole("USER", "ADMIN");
+        //패턴 : /인증인가/컴포넌트이름/액션
     }
 
     /**

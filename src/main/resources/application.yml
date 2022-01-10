@@ -1,6 +1,6 @@
 spring:
   application:
-    name: javaServiceTreeFrameworkAllInOne
+    name: javaServiceTreeFrameworkMiddleProxy
   zipkin:
     enabled: true
     service.name: zipkin-service
@@ -11,8 +11,11 @@ spring:
     sampler:
       probability: 1.0
 
-tokenUrl: http://313.co.kr:8585/auth/realms/devops/protocol/openid-connect/token
-clientId: Java-Service-Tree-Framework-Allinone-Proxy
-clientSecret: b54ae045-7777-4f8b-9d52-15f15d84f56b
+server:
+  port: 13131
+
+tokenUrl: http://www.313.co.kr/auth/realms/devops/protocol/openid-connect/token
+clientId: Java-Service-Tree-Framework-Middle-Proxy
+clientSecret: f1011641-e4d4-4dc8-b177-7834fcf7d041
 accessTokenUser: admin
 accessTokenPass: qwe123

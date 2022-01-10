@@ -17,13 +17,13 @@ targetCompatibility = 1.8
 
 import org.apache.tools.ant.taskdefs.condition.Os
 ext {
-    image = "313devgrp/java-service-tree-framework-all-in-one"
+    image = "313devgrp/java-service-tree-framework-middle-proxy"
 
     artifactType = System.getenv("ARTIFACT_TYPE") ? System.getenv("ARTIFACT_TYPE").toUpperCase() : "SNAPSHOT"
     repositoryType = "${artifactType}".equalsIgnoreCase("RELEASE") ? "release" : "snapshot"
     //업로드 타입 정의 ( maven-release, maven-snapshot, ${repositoryType})
     repositoryUrl = "http://www.313.co.kr/nexus/service/local/repositories/StandardProject/content"
-    metadataUrl = "${repositoryUrl}/313devgrp/java-service-tree-framework-all-in-one/maven-metadata.xml"
+    metadataUrl = "${repositoryUrl}/313devgrp/java-service-tree-framework-middle-proxy/maven-metadata.xml"
 
     //version 정보
     majorVersion = 3
@@ -145,7 +145,6 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.boot:spring-boot-starter-aop')
     implementation('org.springframework.boot:spring-boot-starter-validation')
-    implementation('org.springframework.boot:spring-boot-starter-freemarker')
 
     // security
     implementation('org.springframework.boot:spring-boot-starter-security')
@@ -166,10 +165,16 @@ dependencies {
     implementation('org.springframework.cloud:spring-cloud-starter-sleuth')
     implementation('org.springframework.cloud:spring-cloud-starter-zipkin')
 
+    // redis - session
+    // spring에서 redis에 대한 의존성
+    implementation('org.springframework.boot:spring-boot-starter-data-redis')
+    // spring에서 redis를 session storage로 사용하기 위한 의존성
+    implementation('org.springframework.session:spring-session-data-redis')
 }
 
 docker {
     name "${image}"
+    noCache true
     tags "${project.version}"
     files tasks.bootJar.outputs.files, 'docker-entrypoint.sh'
     buildArgs(['JAR_FILE': tasks.bootJar.outputs.files.singleFile.name, 'ENTRY_FILE': 'docker-entrypoint.sh'])

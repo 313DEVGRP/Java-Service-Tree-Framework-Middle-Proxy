@@ -1,11 +1,11 @@
 {
-  "realm": "devops",
-  "auth-server-url": "http://192.168.25.46:8585/auth/",
+  "realm": "master",
+  "auth-server-url": "http://www.313.co.kr/auth/",
   "ssl-required": "none",
-  "resource": "Java-Service-Tree-Framework-Allinone-Proxy",
+  "resource": "Java-Service-Tree-Framework-Middle-Proxy",
   "verify-token-audience": true,
   "credentials": {
-    "secret": "b54ae045-7777-4f8b-9d52-15f15d84f56b"
+    "secret": "f1011641-e4d4-4dc8-b177-7834fcf7d041"
   },
   "confidential-port": 0,
   "policy-enforcer": {}

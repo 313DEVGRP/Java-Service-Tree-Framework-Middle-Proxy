@@ -1,6 +1,7 @@
 package proxy.api.index.controller;
 
 import org.keycloak.KeycloakSecurityContext;
+import org.keycloak.representations.idm.authorization.Permission;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import proxy.api.config.security.Identity;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author <a href="mailto:psilva@redhat.com">Pedro Igor</a>
@@ -28,39 +30,25 @@ public class IndexController {
     @Autowired
     private HttpServletRequest request;
 
-    @RequestMapping(value = "/protected", method = RequestMethod.GET)
-    public String handleProtected(Model model) {
-        configCommonAttributes(model);
-        return "protected";
-    }
-
-    @RequestMapping(value = "/protected/premium", method = RequestMethod.GET)
-    public String handlePremium(Model model) {
-        configCommonAttributes(model);
-        return "premium";
-    }
-
-    @RequestMapping(value = "/protected/alice", method = RequestMethod.GET)
-    public String handleAliceResources(Model model) {
-        configCommonAttributes(model);
-        return "alice";
-    }
-
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String handleLogoutt() throws ServletException {
         request.logout();
-        return "redirect:http://192.168.25.46:8585/auth/realms/master/protocol/openid-connect/logout";
+        return "redirect:http://www.313.co.kr/auth/realms/master/protocol/openid-connect/logout";
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String handleHome(Model model) {
+    @RequestMapping(value = "/auth-check/identity", method = RequestMethod.GET)
+    @ResponseBody
+    public Identity userIdentity(Model model) {
         configCommonAttributes(model);
-        return "home";
+        return (Identity) model.getAttribute("identity");
     }
 
-    @RequestMapping(value = "/accessDenied", method = RequestMethod.GET)
-    public String handleAccessDenied() {
-        return "access-denied";
+    @RequestMapping(value = "/auth-check/permission", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Permission> userIPermission(Model model) {
+        configCommonAttributes(model);
+        Identity identity = (Identity) model.getAttribute("identity");
+        return identity.getPermissions();
     }
 
     private void configCommonAttributes(Model model) {
