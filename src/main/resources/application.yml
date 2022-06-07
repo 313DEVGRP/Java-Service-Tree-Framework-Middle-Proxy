@@ -14,7 +14,7 @@ spring:
 server:
   port: 13131
 
-tokenUrl: http://www.313.co.kr/auth/realms/devops/protocol/openid-connect/token
+tokenUrl: http://www.313.co.kr/auth/realms/master/protocol/openid-connect/token
 clientId: Java-Service-Tree-Framework-Middle-Proxy
 clientSecret: f1011641-e4d4-4dc8-b177-7834fcf7d041
 accessTokenUser: admin
