@@ -19,10 +19,11 @@ public class KeycloakUserController {
 
     @RequestMapping(value = "/auth-check/getUsers/{userName}", method = RequestMethod.GET)
     @ResponseBody
-    public List<UserRepresentation> userIPermission(@PathVariable("userName") String userName) {
+    public List<UserRepresentation> getUsers(@PathVariable("userName") String userName) {
 
         logger.info("userName -> " + userName);
-        List<UserRepresentation> userRepresentations = KeyCloakConfig.getKeycloakInstance().realm(KeyCloakConfig.realm).users().search(userName, 0, 1000);
+        List<UserRepresentation> userRepresentations = KeyCloakConfig.getKeycloakInstance().realm(KeyCloakConfig.realm).users().search(userName, 0, 1000, false);
+
         return userRepresentations;
     }
 
