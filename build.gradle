@@ -26,8 +26,8 @@ ext {
     metadataUrl = "${repositoryUrl}/313devgrp/java-service-tree-framework-middle-proxy/maven-metadata.xml"
 
     //version 정보
-    majorVersion = 3
-    minorVersion = 13
+    majorVersion = 22
+    minorVersion = 11
     //patchVersion = auto generation
 
     if (Os.isFamily(Os.FAMILY_WINDOWS)) {

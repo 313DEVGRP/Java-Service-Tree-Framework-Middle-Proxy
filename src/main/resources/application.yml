@@ -10,6 +10,10 @@ spring:
     enabled: true
     sampler:
       probability: 1.0
+  servlet:
+    multipart:
+      max-file-size: 10240MB
+      max-request-size: 10240MB
 
 server:
   port: 13131
