@@ -17,6 +17,10 @@ spring:
 
 server:
   port: 13131
+  servlet:
+    session:
+      timeout: 1800
+
 
 serverUrl: http://www.313.co.kr/auth
 realm: master
