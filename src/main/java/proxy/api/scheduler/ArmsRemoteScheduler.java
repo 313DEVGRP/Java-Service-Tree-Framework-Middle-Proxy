@@ -16,7 +16,7 @@ public class ArmsRemoteScheduler {
     @Value("${backendURL}")
     private String backendURL;
 
-    @Scheduled(initialDelay = 10 * 60 * 1000, fixedDelay = 5 * 60 * 1000) //10m 딜레이, 5m 단위
+    @Scheduled(initialDelay = 1 * 60 * 1000, fixedDelay = 5 * 60 * 1000) //1m 딜레이, 5m 단위
     public void set_jiraProject_toPdServiceJira() throws Exception {
 
         logger.info("ArmsScheduler :: set_jiraProject_toPdServiceJira");
@@ -27,7 +27,7 @@ public class ArmsRemoteScheduler {
         logger.info("response = " + response);
     }
 
-    @Scheduled(initialDelay = 5 * 60 * 1000, fixedDelay = 2 * 60 * 1000) //5m 딜레이, 2m 단위
+    @Scheduled(initialDelay = 1 * 60 * 1000, fixedDelay = 5 * 60 * 1000) //5m 딜레이, 2m 단위
     public void set_PdServiceVersion_toJiraProjectVersion() throws Exception {
 
         logger.info("ArmsScheduler :: set_PdServiceVersion_toJiraProjectVersion");
