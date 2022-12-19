@@ -1,5 +1,6 @@
 package proxy.api.index.controller;
 
+import org.keycloak.admin.client.resource.UserProfileResource;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,9 +23,18 @@ public class KeycloakUserController {
     public List<UserRepresentation> getUsers(@PathVariable("userName") String userName) {
 
         logger.info("userName -> " + userName);
-        List<UserRepresentation> userRepresentations = KeyCloakConfig.getKeycloakInstance().realm(KeyCloakConfig.realm).users().search(userName, 0, 1000, false);
+        List<UserRepresentation> userRepresentations = KeyCloakConfig.getKeycloakInstance().realm(KeyCloakConfig.realm).users().search(userName, 0, 1000, true);
 
         return userRepresentations;
+    }
+
+    @RequestMapping(value = "/auth-check/getUserProfile", method = RequestMethod.GET)
+    @ResponseBody
+    public UserProfileResource getUserProfile() {
+
+        UserProfileResource userProfileResource = KeyCloakConfig.getKeycloakInstance().realm(KeyCloakConfig.realm).users().userProfile();
+
+        return userProfileResource;
     }
 
 }
