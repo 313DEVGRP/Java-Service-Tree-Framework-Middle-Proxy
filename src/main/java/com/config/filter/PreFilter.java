@@ -1,4 +1,4 @@
-package proxy.api.config.filter;
+package com.config.filter;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -8,7 +8,6 @@ import com.netflix.zuul.exception.ZuulException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.session.SessionRepository;
-import proxy.api.config.interceptor.RestTemplateLoggingInterceptor;
 
 public class PreFilter extends ZuulFilter {
 

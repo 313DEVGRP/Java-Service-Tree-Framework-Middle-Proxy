@@ -1,4 +1,4 @@
-package proxy.api.config.security;
+package com.config.security;
 
 import org.keycloak.adapters.KeycloakConfigResolver;
 import org.keycloak.adapters.KeycloakDeployment;

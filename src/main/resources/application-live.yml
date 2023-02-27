@@ -20,17 +20,20 @@ zuul:
       url: http://192.168.25.46:31313/dwr
       sensitiveHeaders: Cookie,Set-Cookie
     javaServiceTreeFrameworkBackendServer-AuthAnon:
-      path: /auth-anon/**
-      url: http://192.168.25.46:31313/auth-anon
+      path: /auth-anon/api/**
+      url: http://192.168.25.46:31313
       sensitiveHeaders: Cookie,Set-Cookie
+      stripPrefix: true
     javaServiceTreeFrameworkBackendServer-AuthUser:
-      path: /auth-user/**
-      url: http://192.168.25.46:31313/auth-user
+      path: /auth-user/api/**
+      url: http://192.168.25.46:31313
       sensitiveHeaders: Cookie,Set-Cookie
+      stripPrefix: true
     javaServiceTreeFrameworkBackendServer-AuthAdmin:
-      path: /auth-admin/**
-      url: http://192.168.25.46:31313/auth-admin
+      path: /auth-admin/api/**
+      url: http://192.168.25.46:31313
       sensitiveHeaders: Cookie,Set-Cookie
+      stripPrefix: true
 
 ribbon:
   eureka:

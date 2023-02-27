@@ -1,4 +1,4 @@
-package proxy.api.config;
+package com.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.keycloak.OAuth2Constants;

@@ -1,4 +1,4 @@
-package proxy.api.config.filter;
+package com.config.filter;
 
 import javax.servlet.http.HttpServletResponse;
 

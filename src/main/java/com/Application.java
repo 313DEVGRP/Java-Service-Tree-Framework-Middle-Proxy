@@ -1,11 +1,11 @@
-package proxy.api;
+package com;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
-import proxy.api.config.filter.PostFilter;
-import proxy.api.config.filter.PreFilter;
+import com.config.filter.PostFilter;
+import com.config.filter.PreFilter;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @EnableZuulProxy

@@ -1,4 +1,4 @@
-package proxy.api.config.security;
+package com.config.security;
 
 
 import java.util.List;
@@ -13,7 +13,7 @@ import org.keycloak.representations.idm.authorization.Permission;
  * <p>Instances of this class are are added to models as attributes in order to make them available to templates.
  *
  * @author <a href="mailto:psilva@redhat.com">Pedro Igor</a>
- * @see proxy.api.index.controller.IndexController
+ * @see com.proxy.jira.controller.IndexController
  */
 public class Identity {
 

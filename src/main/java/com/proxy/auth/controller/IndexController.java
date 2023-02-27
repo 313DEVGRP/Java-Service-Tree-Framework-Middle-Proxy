@@ -1,4 +1,4 @@
-package proxy.api.index.controller;
+package com.proxy.auth.controller;
 
 import org.keycloak.KeycloakSecurityContext;
 import org.keycloak.representations.idm.authorization.Permission;
@@ -13,7 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import proxy.api.config.security.Identity;
+import com.config.security.Identity;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

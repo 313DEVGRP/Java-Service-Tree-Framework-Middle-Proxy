@@ -1,4 +1,4 @@
-package proxy.api.config.security;
+package com.config.security;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

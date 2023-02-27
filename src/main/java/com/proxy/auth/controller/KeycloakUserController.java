@@ -1,4 +1,4 @@
-package proxy.api.index.controller;
+package com.proxy.auth.controller;
 
 import org.keycloak.admin.client.resource.UserProfileResource;
 import org.keycloak.representations.idm.UserRepresentation;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import proxy.api.config.KeyCloakConfig;
+import com.config.KeyCloakConfig;
 
 import java.util.List;
 

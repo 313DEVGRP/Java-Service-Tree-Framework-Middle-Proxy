@@ -1,4 +1,4 @@
-package proxy.api.config.interceptor;
+package com.config.interceptor;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpRequest;
