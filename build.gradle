@@ -6,24 +6,26 @@ buildscript {
 
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.3.7.RELEASE'
+    id 'org.springframework.boot' version '2.6.3'
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
     id 'com.palantir.docker' version '0.28.0'
     id 'maven-publish'
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
 
 import org.apache.tools.ant.taskdefs.condition.Os
 ext {
-    image = "313devgrp/java-service-tree-framework-middle-com.proxy"
+    image = "313devgrp/java-service-tree-framework-middle-proxy"
 
     artifactType = System.getenv("ARTIFACT_TYPE") ? System.getenv("ARTIFACT_TYPE").toUpperCase() : "SNAPSHOT"
     repositoryType = "${artifactType}".equalsIgnoreCase("RELEASE") ? "release" : "snapshot"
     //업로드 타입 정의 ( maven-release, maven-snapshot, ${repositoryType})
     repositoryUrl = "http://www.313.co.kr/nexus/service/local/repositories/StandardProject/content"
-    metadataUrl = "${repositoryUrl}/313devgrp/java-service-tree-framework-middle-com.proxy/maven-metadata.xml"
+    metadataUrl = "${repositoryUrl}/313devgrp/java-service-tree-framework-middle-proxy/maven-metadata.xml"
 
     //version 정보
     majorVersion = 22
@@ -32,6 +34,8 @@ ext {
 
     if (Os.isFamily(Os.FAMILY_WINDOWS)) {
         println "*** Windows "
+    }else if (Os.isFamily(Os.FAMILY_MAC)) {
+        println "*** Mac "
     }else {
         exec {
             executable "wget"
@@ -78,7 +82,7 @@ def getMavenSettingsCredentials = {
     String userHome = System.getProperty("user.home")
     File mavenSettings = new File ( userHome, ".m2/settings.xml")
 
-    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+    if (Os.isFamily(Os.FAMILY_WINDOWS)||Os.isFamily(Os.FAMILY_MAC)) {
         if(!mavenSettings.exists()){
             mavenSettings = new File("${projectDir}/settings.xml")
         }
@@ -132,8 +136,8 @@ repositories {
 
 dependencyManagement {
     imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR9"
-        mavenBom "org.keycloak.bom:keycloak-adapter-bom:12.0.4"
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:2021.0.0"
+        mavenBom "org.keycloak.bom:keycloak-adapter-bom:15.0.2"
     }
 }
 
@@ -142,38 +146,56 @@ dependencies {
     implementation('org.projectlombok:lombok')
 
     // spring
-    implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.boot:spring-boot-starter-aop')
     implementation('org.springframework.boot:spring-boot-starter-validation')
+    implementation('org.springframework:spring-context')
+
+    //oauth
+    implementation('org.springframework.boot:spring-boot-starter-oauth2-client')
+    implementation('org.springframework.boot:spring-boot-starter-oauth2-resource-server')
+    implementation('org.springframework.security:spring-security-oauth2-jose')
+
+    //redis
+    implementation('org.springframework.session:spring-session-data-redis')
+    implementation('io.lettuce:lettuce-core')
 
     // security
-    implementation('org.springframework.boot:spring-boot-starter-security')
-    implementation('org.springframework.security.oauth:spring-security-oauth2:2.3.8.RELEASE')
+
+    // spring cloud gate way
+    implementation('org.springframework.cloud:spring-cloud-starter-gateway')
 
     // keycloak
+    implementation('org.keycloak:keycloak-spring-boot-starter'){
+        exclude group: 'org.apache.tomcat.embed', module: 'tomcat-embed-core'
+        exclude group: 'org.apache.tomcat.embed', module: 'tomcat-embed-el'
+        exclude group: 'org.apache.tomcat.embed', module: 'tomcat-embed-websocket'
+    }
     implementation('org.keycloak:keycloak-spring-security-adapter')
-    implementation('org.keycloak:keycloak-authz-client')
-    implementation group: 'org.keycloak', name: 'keycloak-admin-client', version: '16.1.1'
-
-
-    // ZuulProxy
-    implementation('org.springframework.cloud:spring-cloud-starter-netflix-zuul')
+    implementation(group: 'org.keycloak', name: 'keycloak-admin-client', version: '16.1.1')
 
     // Swagger
-    implementation('io.springfox:springfox-swagger2:2.9.2')
-    implementation('io.springfox:springfox-swagger-ui:2.9.2')
+    implementation('io.springfox:springfox-boot-starter:3.0.0')
+    implementation('io.springfox:springfox-swagger-ui:3.0.0')
+
+    // netty mac os dev용
+    implementation ('io.netty:netty-resolver-dns-native-macos:4.1.90.Final:osx-aarch_64')
+
+    // spring config
+    //implementation 'org.springframework.cloud:spring-cloud-config-server'
 
     // Zipkin
-    implementation('org.springframework.cloud:spring-cloud-starter-sleuth')
-    implementation('org.springframework.cloud:spring-cloud-starter-zipkin')
+    //implementation('org.springframework.cloud:spring-cloud-starter-sleuth')
+    //implementation('org.springframework.cloud:spring-cloud-starter-zipkin')
 
-    // redis - session
-    // spring에서 redis에 대한 의존성
-    implementation('org.springframework.boot:spring-boot-starter-data-redis')
-    // spring에서 redis를 session storage로 사용하기 위한 의존성
-    implementation('org.springframework.session:spring-session-data-redis')
+
+    annotationProcessor(
+            'org.projectlombok:lombok'
+    )
 }
 
+
+
+//
 docker {
     name "${image}"
     noCache true
