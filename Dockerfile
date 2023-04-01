@@ -1,4 +1,4 @@
-FROM openjdk:8-jre
+FROM openjdk:11-jre
 MAINTAINER 313DEVGRP <313@313.co.kr>
 
 RUN apt-get update
