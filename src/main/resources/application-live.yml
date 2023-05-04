@@ -4,10 +4,10 @@ spring:
   session:
     store-type: redis
   redis:
-    host: 192.168.25.46
+    host: 192.168.25.31
     port: 6379
 
-backendURL : http://192.168.25.46:31313
+backendURL : http://192.168.25.31:31313
 
 zuul:
   ignoredServices: "*"
@@ -17,19 +17,19 @@ zuul:
   routes:
     javaServiceTreeFrameworkBackendServer-DWR:
       path: /dwr/**
-      url: http://192.168.25.46:31313/dwr
+      url: http://192.168.25.31:31313/dwr
       sensitiveHeaders: Cookie,Set-Cookie
     javaServiceTreeFrameworkBackendServer-AuthAnon:
       path: /auth-anon/**
-      url: http://192.168.25.46:31313/auth-anon
+      url: http://192.168.25.31:31313/auth-anon
       sensitiveHeaders: Cookie,Set-Cookie
     javaServiceTreeFrameworkBackendServer-AuthUser:
       path: /auth-user/**
-      url: http://192.168.25.46:31313/auth-user
+      url: http://192.168.25.31:31313/auth-user
       sensitiveHeaders: Cookie,Set-Cookie
     javaServiceTreeFrameworkBackendServer-AuthAdmin:
       path: /auth-admin/**
-      url: http://192.168.25.46:31313/auth-admin
+      url: http://192.168.25.31:31313/auth-admin
       sensitiveHeaders: Cookie,Set-Cookie
 
 ribbon:

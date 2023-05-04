@@ -2,7 +2,7 @@ spring:
   session:
     store-type: redis
   redis:
-    host: 192.168.25.46
+    host: 192.168.25.31
     port: 6379
   cloud:
     gateway:
@@ -15,6 +15,8 @@ spring:
             - RewritePath=/auth-anon/api/(?<path>.*), /$\{path}
             - name: BlockRequestGatewayFilter
             - RemoveRequestHeader=Cookie
+            - RemoveRequestHeader=Set-Cookie
+            - RemoveRequestHeader=Authorization
         - id: javaServiceTreeFrameworkBackendServer-AuthUser
           uri: http://127.0.0.1:31313
           predicates:
@@ -22,7 +24,8 @@ spring:
           filters:
             - RewritePath=/auth-user/api/(?<path>.*), /$\{path}
             - RemoveRequestHeader=Cookie
-
+            - RemoveRequestHeader=Set-Cookie
+            - RemoveRequestHeader=Authorization
   security:
     oauth2:
       client:
@@ -41,6 +44,8 @@ spring:
             redirect-uri: "{baseUrl}/login/oauth2/code/middle-proxy"
   main:
     web-application-type: reactive
+
+backendURL : http://127.0.0.1:31313
 
 logging:
   level:

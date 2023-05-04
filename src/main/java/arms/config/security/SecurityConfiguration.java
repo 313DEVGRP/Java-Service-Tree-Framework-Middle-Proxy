@@ -23,8 +23,6 @@ import reactor.core.publisher.Mono;
 @EnableGlobalMethodSecurity(jsr250Enabled = true)
 public class SecurityConfiguration {
 
-
-
   @Bean
   public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
 
