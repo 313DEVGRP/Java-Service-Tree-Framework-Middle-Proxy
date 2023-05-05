@@ -29,7 +29,7 @@ public class CallBackController {
     @RequestMapping(value = "/callback/api/arms/armsScheduler/forceExec/set_PdServiceVersion_toJiraProjectVersion.do", method = RequestMethod.GET)
     @ResponseBody
     public String set_PdServiceVersion_toJiraProjectVersion() throws Exception {
-        armsRemoteScheduler.set_PdServiceVersion_toJiraProjectVersion();
+        //armsRemoteScheduler.set_PdServiceVersion_toJiraProjectVersion();
         return "CallForwardBackendController :: set_PdServiceVersion_toJiraProjectVersion";
     }
 
