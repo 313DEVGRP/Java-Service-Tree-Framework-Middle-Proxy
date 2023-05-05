@@ -1,6 +1,5 @@
-package arms.api.controller;
+package proxy.api.index.controller;
 
-import arms.config.KeyCloakConfig;
 import org.keycloak.admin.client.resource.UserProfileResource;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.slf4j.Logger;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import proxy.api.config.KeyCloakConfig;
 
 import java.util.List;
 

@@ -1,5 +1,6 @@
-package arms.config.interceptor;
+package proxy.api.config.interceptor;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
@@ -11,7 +12,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.stream.Collectors;
 
-//@Slf4j
+@Slf4j
 public class RestTemplateLoggingInterceptor implements ClientHttpRequestInterceptor {
 
     private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(RestTemplateLoggingInterceptor.class);

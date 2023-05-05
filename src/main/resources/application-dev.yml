@@ -1,48 +1,39 @@
 spring:
+  profiles:
+    active: dev
   session:
     store-type: redis
   redis:
     host: 192.168.25.31
     port: 6379
-  cloud:
-    gateway:
-      routes:
-        - id: javaServiceTreeFrameworkBackendServer-AuthAnon
-          uri: http://127.0.0.1:31313
-          predicates:
-            - Path=/auth-anon/**
-          filters:
-            - RewritePath=/auth-anon/api/(?<path>.*), /$\{path}
-        - id: javaServiceTreeFrameworkBackendServer-AuthUser
-          uri: http://127.0.0.1:31313
-          predicates:
-            - Path=/auth-user/**
-          filters:
-            - RewritePath=/auth-user/api/(?<path>.*), /$\{path}
-  security:
-    oauth2:
-      client:
-        provider:
-          keycloak:
-            token-uri: http://www.313.co.kr/auth/realms/master/protocol/openid-connect/token
-            authorization-uri: http://www.313.co.kr/auth/realms/master/protocol/openid-connect/auth
-            user-info-uri: http://www.313.co.kr/auth/realms/master/protocol/openid-connect/userinfo
-            user-name-attribute: preferred_username
-        registration:
-          middle-proxy:
-            provider: keycloak
-            client-id: Java-Service-Tree-Framework-Middle-Proxy
-            client-secret: f1011641-e4d4-4dc8-b177-7834fcf7d041
-            authorization-grant-type: authorization_code
-            redirect-uri: "{baseUrl}/login/oauth2/code/middle-proxy"
-  main:
-    web-application-type: reactive
 
 backendURL : http://127.0.0.1:31313
 
-logging:
-  level:
-    proxy: debug
+zuul:
+  igoredServices: '*'
+  host:
+    conect-timeout-millis: 600000
+    socket-timeout-millis: 600000
+  routes:
+    javaServiceTreeFrameworkBackendServer-DWR:
+      path: /dwr/**
+      url: http://127.0.0.1:31313/dwr
+      sensitiveHeaders: Cookie,Set-Cookie
+    javaServiceTreeFrameworkBackendServer-AuthAnon:
+      path: /auth-anon/api/**
+      url: http://127.0.0.1:31313
+      sensitiveHeaders: Cookie,Set-Cookie
+      stripPrefix: true
+    javaServiceTreeFrameworkBackendServer-AuthUser:
+      path: /auth-user/api/**
+      url: http://127.0.0.1:31313
+      sensitiveHeaders: Cookie,Set-Cookie
+      stripPrefix: true
+    javaServiceTreeFrameworkBackendServer-AuthAdmin:
+      path: /auth-admin/api/**
+      url: http://127.0.0.1:31313
+      sensitiveHeaders: Cookie,Set-Cookie
+      stripPrefix: true
 
 ribbon:
   eureka:
