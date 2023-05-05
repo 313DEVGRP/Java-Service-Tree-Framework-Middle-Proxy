@@ -13,19 +13,12 @@ spring:
             - Path=/auth-anon/**
           filters:
             - RewritePath=/auth-anon/api/(?<path>.*), /$\{path}
-            - name: BlockRequestGatewayFilter
-            - RemoveRequestHeader=Cookie
-            - RemoveRequestHeader=Set-Cookie
-            - RemoveRequestHeader=Authorization
         - id: javaServiceTreeFrameworkBackendServer-AuthUser
           uri: http://127.0.0.1:31313
           predicates:
             - Path=/auth-user/**
           filters:
             - RewritePath=/auth-user/api/(?<path>.*), /$\{path}
-            - RemoveRequestHeader=Cookie
-            - RemoveRequestHeader=Set-Cookie
-            - RemoveRequestHeader=Authorization
   security:
     oauth2:
       client:
