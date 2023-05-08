@@ -1,11 +1,11 @@
 spring:
   application:
     name: javaServiceTreeFrameworkMiddleProxy
-  zipkin:
-    enabled: true
-    service.name: zipkin-service
-    sender.type: web
-    base-url: http://192.168.25.31:9411
+  #  zipkin:
+  #    enabled: true
+  #    service.name: zipkin-service
+  #    sender.type: web
+  #    base-url: http://192.168.25.31:9411
   sleuth:
     enabled: true
     sampler:
@@ -15,11 +15,15 @@ spring:
       max-file-size: 10240MB
       max-request-size: 10240MB
 
+
 server:
   port: 13131
-  servlet:
-    session:
-      timeout: 1800
+
+io:
+  netty:
+    resolver:
+      dns:
+        native: false
 
 
 serverUrl: http://www.313.co.kr/auth
@@ -27,5 +31,3 @@ realm: master
 tokenUrl: http://www.313.co.kr/auth/realms/master/protocol/openid-connect/token
 clientId: Java-Service-Tree-Framework-Middle-Proxy
 clientSecret: f1011641-e4d4-4dc8-b177-7834fcf7d041
-accessTokenUser: admin
-accessTokenPass: qwe123
