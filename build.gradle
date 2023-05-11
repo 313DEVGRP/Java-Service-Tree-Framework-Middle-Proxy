@@ -197,7 +197,7 @@ dependencies {
 
 //
 docker {
-    name "${image}"
+    name "313.co.kr:5550/${image}"
     noCache true
     tags "${project.version}"
     files tasks.bootJar.outputs.files, 'docker-entrypoint.sh'
