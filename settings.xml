@@ -125,16 +125,14 @@ under the License.
     
     <!-- Another sample, using keys to authenticate.-->
     <server>
-      <id>snapshots</id>
+      <id>ple-releases</id>
       <username>admin</username>
-      <password>test</password>
+      <password>qwe123</password>
+      <configuration>
+        <email>313@313.co.kr</email>
+      </configuration>
     </server>
-    <server>
-      <id>releases</id>
-      <username>admin</username>
-      <password>test</password>
-    </server>
-    
+
   </servers>
 
   <!-- mirrors
