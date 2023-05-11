@@ -88,7 +88,7 @@ def getMavenSettingsCredentials = {
         }
     }else {
         if(!mavenSettings.exists()){
-            mavenSettings = new File ("/jenkins_home/settings.xml")
+            mavenSettings = new File ("/nfs/devtool/jenkins_agent/settings.xml")
         }
     }
     def xmlSlurper = new XmlSlurper()
