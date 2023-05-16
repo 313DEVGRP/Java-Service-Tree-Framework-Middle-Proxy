@@ -1,36 +1,48 @@
 spring:
-  profiles:
-    active: live
   session:
     store-type: redis
   redis:
     host: 192.168.25.31
     port: 6379
+  cloud:
+    gateway:
+      routes:
+        - id: javaServiceTreeFrameworkBackendServer-AuthAnon
+          uri: http://192.168.25.31:31313
+          predicates:
+            - Path=/auth-anon/**
+          filters:
+            - RewritePath=/auth-anon/api/(?<path>.*), /$\{path}
+        - id: javaServiceTreeFrameworkBackendServer-AuthUser
+          uri: http://192.168.25.31:31313
+          predicates:
+            - Path=/auth-user/**
+          filters:
+            - RewritePath=/auth-user/api/(?<path>.*), /$\{path}
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            token-uri: http://www.313.co.kr/auth/realms/master/protocol/openid-connect/token
+            authorization-uri: http://www.313.co.kr/auth/realms/master/protocol/openid-connect/auth
+            user-info-uri: http://www.313.co.kr/auth/realms/master/protocol/openid-connect/userinfo
+            user-name-attribute: preferred_username
+        registration:
+          middle-proxy:
+            provider: keycloak
+            client-id: Java-Service-Tree-Framework-Middle-Proxy
+            client-secret: f1011641-e4d4-4dc8-b177-7834fcf7d041
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/middle-proxy"
+  main:
+    web-application-type: reactive
 
 backendURL : http://192.168.25.31:31313
 
-zuul:
-  ignoredServices: "*"
-  host:
-    connect-timeout-millis: 30000
-    socket-timeout-millis: 30000
-  routes:
-    javaServiceTreeFrameworkBackendServer-DWR:
-      path: /dwr/**
-      url: http://192.168.25.31:31313/dwr
-      sensitiveHeaders: Cookie,Set-Cookie
-    javaServiceTreeFrameworkBackendServer-AuthAnon:
-      path: /auth-anon/**
-      url: http://192.168.25.31:31313/auth-anon
-      sensitiveHeaders: Cookie,Set-Cookie
-    javaServiceTreeFrameworkBackendServer-AuthUser:
-      path: /auth-user/**
-      url: http://192.168.25.31:31313/auth-user
-      sensitiveHeaders: Cookie,Set-Cookie
-    javaServiceTreeFrameworkBackendServer-AuthAdmin:
-      path: /auth-admin/**
-      url: http://192.168.25.31:31313/auth-admin
-      sensitiveHeaders: Cookie,Set-Cookie
+logging:
+  level:
+    proxy: debug
 
 ribbon:
   eureka:
