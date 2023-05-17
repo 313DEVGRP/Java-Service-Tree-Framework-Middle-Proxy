@@ -8,3 +8,7 @@
 * Artifact Version 을 자동으로 구성하도록 설정
 * ZuulProxy 를 활용한 MSA Gateway 구성
 * Zipkin 을 활용한 Request Flow 추적
+
+### Those who support us! ###
+0. Nexus 의 Realms 에 Docker Bearer Token 을 Active 해야 Docker login 가능 함.
+1. 빌드 시, Jenkins agent 가 동작하는 HOST 에 Docker Login {Nexus}를 해야만 401 없이 push 됨

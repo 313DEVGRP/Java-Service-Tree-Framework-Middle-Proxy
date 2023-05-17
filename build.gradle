@@ -6,10 +6,20 @@ buildscript {
 
 plugins {
     id 'java'
+    id "org.sonarqube" version "3.4.0.2513"
     id 'org.springframework.boot' version '2.6.3'
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
     id 'com.palantir.docker' version '0.28.0'
     id 'maven-publish'
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "Java-Service-Tree-Framework-Middle-Proxy"
+        property "sonar.host.url", "http://www.313.co.kr/sonar"
+        property "sonar.login", "admin"
+        property "sonar.password", "qwe123"
+    }
 }
 
 java {
