@@ -19,6 +19,18 @@ spring:
             - Path=/auth-user/**
           filters:
             - RewritePath=/auth-user/api/(?<path>.*), /$\{path}
+        - id: javaServiceTreeFrameworkBackendServer-AdminUser
+          uri: http://127.0.0.1:31313
+          predicates:
+            - Path=/auth-admin/**
+          filters:
+            - RewritePath=/auth-user/api/(?<path>.*), /$\{path}
+        - id: javaServiceTreeFrameworkBackendServer-DWR
+          uri: http://127.0.0.1:31313
+          predicates:
+            - Path=/dwr/**
+          filters:
+            - RewritePath=/(?<path>.*), /$\{path}
   security:
     oauth2:
       client:
