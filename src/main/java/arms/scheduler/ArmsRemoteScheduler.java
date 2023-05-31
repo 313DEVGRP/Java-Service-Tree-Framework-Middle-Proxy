@@ -49,4 +49,15 @@ public class ArmsRemoteScheduler {
         logger.info("response = " + response);
     }
 
+    @Scheduled(initialDelay = 4 * 60 * 1000, fixedDelay = 30 * 60 * 1000) //4m 딜레이, 30m 단위
+    public void miningJiraIssueStatus() throws Exception {
+
+        logger.info("ArmsScheduler :: miningJiraIssueStatus");
+        String targetUrl = backendURL + "/arms/jiraIssueStatus/miningDataToaRMS.do";
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> response = restTemplate.getForEntity(targetUrl, String.class);
+        logger.info("response = " + response);
+    }
+
 }
