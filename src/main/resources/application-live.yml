@@ -20,13 +20,13 @@ spring:
           filters:
             - RewritePath=/auth-user/api/(?<path>.*), /$\{path}
         - id: javaServiceTreeFrameworkBackendServer-AdminUser
-          uri: http://127.0.0.1:31313
+          uri: http://192.168.25.31:31313
           predicates:
             - Path=/auth-admin/**
           filters:
             - RewritePath=/auth-user/api/(?<path>.*), /$\{path}
         - id: javaServiceTreeFrameworkBackendServer-DWR
-          uri: http://127.0.0.1:31313
+          uri: http://192.168.25.31:31313/dwr
           predicates:
             - Path=/dwr/**
           filters:

@@ -42,6 +42,7 @@ public class SecurityConfiguration {
               .csrf(CsrfSpec::disable)
               .authorizeExchange(
                    authorize -> authorize
+                    .pathMatchers("/dwr/**").permitAll()
                     .pathMatchers("/auth-anon/**").permitAll()
                     .pathMatchers("/auth-user/**").hasAnyRole("USER", "ADMIN")
                     .pathMatchers("/auth-admin/**").hasRole("ADMIN")
