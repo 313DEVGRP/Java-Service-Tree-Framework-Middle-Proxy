@@ -14,7 +14,11 @@ spring:
     multipart:
       max-file-size: 10240MB
       max-request-size: 10240MB
-
+  cloud:
+    gateway:
+      httpclient:
+        connect-timeout: 300000
+        response-timeout: 300000
 
 server:
   port: 13131
