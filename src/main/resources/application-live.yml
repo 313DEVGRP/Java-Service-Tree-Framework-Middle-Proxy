@@ -8,25 +8,25 @@ spring:
     gateway:
       routes:
         - id: javaServiceTreeFrameworkBackendServer-AuthAnon
-          uri: http://192.168.25.31:31313
+          uri: http://313.co.kr:31313
           predicates:
             - Path=/auth-anon/**
           filters:
             - RewritePath=/auth-anon/api/(?<path>.*), /$\{path}
         - id: javaServiceTreeFrameworkBackendServer-AuthUser
-          uri: http://192.168.25.31:31313
+          uri: http://313.co.kr:31313
           predicates:
             - Path=/auth-user/**
           filters:
             - RewritePath=/auth-user/api/(?<path>.*), /$\{path}
         - id: javaServiceTreeFrameworkBackendServer-AdminUser
-          uri: http://192.168.25.31:31313
+          uri: http://313.co.kr:31313
           predicates:
             - Path=/auth-admin/**
           filters:
             - RewritePath=/auth-user/api/(?<path>.*), /$\{path}
         - id: javaServiceTreeFrameworkBackendServer-DWR
-          uri: http://192.168.25.31:31313/dwr
+          uri: http://313.co.kr:31313/dwr
           predicates:
             - Path=/dwr/**
           filters:
@@ -50,7 +50,7 @@ spring:
   main:
     web-application-type: reactive
 
-backendURL : http://192.168.25.31:31313
+backendURL : http://313.co.kr:31313
 
 logging:
   level:
