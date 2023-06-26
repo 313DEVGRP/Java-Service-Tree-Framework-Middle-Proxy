@@ -201,9 +201,6 @@ dependencies {
     )
 }
 
-
-
-//
 docker {
     name "313.co.kr:5550/${image}:${project.version}"
     noCache true
