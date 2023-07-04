@@ -16,7 +16,7 @@ public class ArmsRemoteScheduler {
     @Value("${backendURL}")
     private String backendURL;
 
-    @Scheduled(initialDelay = 1 * 60 * 1000, fixedDelay = 30 * 60 * 1000) //1m 딜레이, 30m 단위
+    @Scheduled(initialDelay = 1 * 60 * 1000, fixedDelay = 30 * 60 * 1000)
     public void miningJiraProject() throws Exception {
 
         logger.info("ArmsScheduler :: miningJiraProject");
@@ -27,7 +27,7 @@ public class ArmsRemoteScheduler {
         logger.info("response = " + response);
     }
 
-    @Scheduled(initialDelay = 2 * 60 * 1000, fixedDelay = 30 * 60 * 1000) //2m 딜레이, 30m 단위
+    @Scheduled(initialDelay = 2 * 60 * 1000, fixedDelay = 30 * 60 * 1000)
     public void miningJiraIssuePriority() throws Exception {
 
         logger.info("ArmsScheduler :: miningJiraIssuePriority");
@@ -38,7 +38,7 @@ public class ArmsRemoteScheduler {
         logger.info("response = " + response);
     }
 
-    @Scheduled(initialDelay = 3 * 60 * 1000, fixedDelay = 30 * 60 * 1000) //3m 딜레이, 30m 단위
+    @Scheduled(initialDelay = 3 * 60 * 1000, fixedDelay = 30 * 60 * 1000)
     public void miningJiraIssueResolution() throws Exception {
 
         logger.info("ArmsScheduler :: miningJiraIssueResolution");
@@ -49,7 +49,7 @@ public class ArmsRemoteScheduler {
         logger.info("response = " + response);
     }
 
-    @Scheduled(initialDelay = 4 * 60 * 1000, fixedDelay = 30 * 60 * 1000) //4m 딜레이, 30m 단위
+    @Scheduled(initialDelay = 4 * 60 * 1000, fixedDelay = 30 * 60 * 1000)
     public void miningJiraIssueStatus() throws Exception {
 
         logger.info("ArmsScheduler :: miningJiraIssueStatus");
