@@ -41,7 +41,10 @@ public class SecurityConfiguration {
               .cors(CorsSpec::disable)
               .csrf(CsrfSpec::disable)
               .authorizeExchange(
-                   authorize -> authorize
+                    authorize -> authorize
+                    .pathMatchers("/swagger-ui/**").permitAll()
+                    .pathMatchers("/swagger-resources/**").permitAll()
+                    .pathMatchers("/v2/api-docs/**").permitAll()
                     .pathMatchers("/dwr/**").permitAll()
                     .pathMatchers("/auth-anon/**").permitAll()
                     .pathMatchers("/auth-user/**").hasAnyRole("USER", "ADMIN")
