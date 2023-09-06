@@ -1,22 +1,21 @@
 package arms.config.security;
 
-import arms.config.handler.KeycloakLogoutHandler;
-import org.springframework.beans.factory.annotation.Value;
+import java.net.URI;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity.CorsSpec;
 import org.springframework.security.config.web.server.ServerHttpSecurity.CsrfSpec;
+import org.springframework.security.web.server.DefaultServerRedirectStrategy;
 import org.springframework.security.web.server.SecurityWebFilterChain;
-import org.springframework.security.web.server.authentication.RedirectServerAuthenticationSuccessHandler;
 import org.springframework.security.web.server.authentication.logout.DelegatingServerLogoutHandler;
+import org.springframework.security.web.server.authentication.logout.SecurityContextServerLogoutHandler;
+import org.springframework.security.web.server.authentication.logout.ServerLogoutSuccessHandler;
 import org.springframework.security.web.server.authentication.logout.WebSessionServerLogoutHandler;
 import org.springframework.web.server.ResponseStatusException;
-import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 @Configuration
@@ -24,22 +23,18 @@ import reactor.core.publisher.Mono;
 @EnableGlobalMethodSecurity(jsr250Enabled = true)
 public class SecurityConfiguration {
 
-
-    @Value("${spring.security.auth.success.redirect-url}")
-    private  String redirectUrl;
-
-    private final KeycloakLogoutHandler keycloakLogoutHandler;
-
-    public SecurityConfiguration(KeycloakLogoutHandler keycloakLogoutHandler) {
-        this.keycloakLogoutHandler = keycloakLogoutHandler;
-    }
-
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
 
         DelegatingServerLogoutHandler logoutHandler = new DelegatingServerLogoutHandler(
-                new WebSessionServerLogoutHandler()
-                , keycloakLogoutHandler
+                new WebSessionServerLogoutHandler(),
+                new SecurityContextServerLogoutHandler()
+        );
+
+        ServerLogoutSuccessHandler successHandler = (exchange, authentication)
+                -> new DefaultServerRedirectStrategy().sendRedirect(
+                exchange.getExchange()
+                , URI.create("http://www.313.co.kr/auth/realms/master/protocol/openid-connect/logout")
         );
 
         return http
@@ -64,19 +59,16 @@ public class SecurityConfiguration {
                 )
                 .and()
                 .oauth2Login()
-                .authenticationSuccessHandler(new RedirectServerAuthenticationSuccessHandler(redirectUrl))
+                .and()
+                .formLogin()
+                .loginPage("")
                 .and()
                 .logout(logout -> logout
-                        .logoutUrl("/logout")
                         .logoutHandler(logoutHandler)
-                        .logoutSuccessHandler(((webFilterExchange, authentication) -> {
-                            ServerWebExchange exchange = webFilterExchange.getExchange();
-                            ServerHttpResponse response = exchange.getResponse();
-                            response.setStatusCode(HttpStatus.OK);
-                            return response.setComplete();
-                        }))
+                        .logoutSuccessHandler(successHandler)
                 )
                 .build();
     }
+
 
 }
