@@ -41,11 +41,11 @@ spring:
       client:
         provider:
           keycloak:
-            issuer-uri: http://www.313.co.kr/auth/realms/mad
+            issuer-uri: http://www.313.co.kr/auth/realms/master
             token-uri: http://www.313.co.kr/auth/realms/master/protocol/openid-connect/token
             authorization-uri: http://www.313.co.kr/auth/realms/master/protocol/openid-connect/auth
             user-info-uri: http://www.313.co.kr/auth/realms/master/protocol/openid-connect/userinfo
-            jwk-set-uri: http://www.313.co.kr/auth/realms/mad/protocol/openid-connect/certs
+            jwk-set-uri: http://www.313.co.kr/auth/realms/master/protocol/openid-connect/certs
             user-name-attribute: preferred_username
         registration:
           middle-proxy:
