@@ -42,7 +42,7 @@ public class SecurityConfiguration {
 
         DelegatingServerLogoutHandler logoutHandler = new DelegatingServerLogoutHandler(
             new WebSessionServerLogoutHandler(),
-            new SecurityContextServerLogoutHandler()
+            keycloakLogoutHandler
         );
 
         ServerLogoutSuccessHandler successHandler = (exchange, authentication)
