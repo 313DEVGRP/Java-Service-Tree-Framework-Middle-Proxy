@@ -51,7 +51,7 @@ spring:
         registration:
           middle-proxy:
             scope: openid
-            realm: mad
+            realm: master
             server-url: http://www.313.co.kr/auth
             provider: keycloak
             client-id: Java-Service-Tree-Framework-Middle-Proxy
