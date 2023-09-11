@@ -45,12 +45,6 @@ public class SecurityConfiguration {
             keycloakLogoutHandler
         );
 
-        ServerLogoutSuccessHandler successHandler = (exchange, authentication)
-            -> new DefaultServerRedirectStrategy().sendRedirect(
-            exchange.getExchange()
-            , URI.create("http://www.313.co.kr/auth/realms/master/protocol/openid-connect/logout")
-        );
-
         return http
             .cors(CorsSpec::disable)
             .csrf(CsrfSpec::disable)

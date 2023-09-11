@@ -15,7 +15,7 @@ import org.springframework.web.reactive.config.EnableWebFlux;
 @Configuration
 @EnableWebFlux
 @EnableRedisRepositories
-@EnableRedisWebSession(maxInactiveIntervalInSeconds = 60*60*2)
+@EnableRedisWebSession // default ->(maxInactiveIntervalInSeconds = 1800)
 public class RedisConfig {
 
 
