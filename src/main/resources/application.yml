@@ -17,8 +17,8 @@ spring:
   cloud:
     gateway:
       httpclient:
-        connect-timeout: 300000
-        response-timeout: 300000
+        connect-timeout: 7200000
+        response-timeout: 7200000
 
 server:
   port: 13131
