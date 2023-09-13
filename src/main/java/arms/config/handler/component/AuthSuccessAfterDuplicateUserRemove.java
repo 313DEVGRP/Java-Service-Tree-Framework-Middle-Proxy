@@ -37,6 +37,8 @@ public class AuthSuccessAfterDuplicateUserRemove  {
                     if(preferredUsername.equals(oidcUser.getPreferredUsername())){
                         String sessionId = sessionKey.replace(SESSION_KEY_PATTERN, "");
                         if(!currentSessionId.equals(sessionId)){
+                            //TO-DO
+                            //dwrClient.sendMessage(preferredUsername + "님 과 동일한 계정이 로그인 되었습니다.");
                             return keycloakLogoutHandler.logoutFromKeycloak(oidcUser.getIdToken().getTokenValue())
                                     .then(reactiveRedisSessionRepository.deleteById(sessionId));
                         }
