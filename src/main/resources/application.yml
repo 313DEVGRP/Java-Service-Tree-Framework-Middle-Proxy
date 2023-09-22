@@ -1,15 +1,6 @@
 spring:
   application:
     name: javaServiceTreeFrameworkMiddleProxy
-  sleuth:
-    enabled: true
-    sampler:
-      probability: 1.0
-  zipkin:
-    enabled: true
-    service.name: zipkin-service
-    sender.type: web
-    base-url: http://313.co.kr:9411
   servlet:
     multipart:
       max-file-size: 10240MB

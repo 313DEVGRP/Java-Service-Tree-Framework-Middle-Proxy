@@ -2,32 +2,41 @@ spring:
   session:
     store-type: redis
   redis:
-    host: 192.168.25.31
+    host: redis
     port: 6379
+  sleuth:
+    enabled: true
+    sampler:
+      probability: 1.0
+  zipkin:
+    enabled: true
+    service.name: zipkin-service
+    sender.type: web
+    base-url: http://zipkin:9411
   cloud:
     gateway:
       routes:
         - id: javaServiceTreeFrameworkBackendServer-AuthAnon
-          uri: http://313.co.kr:31313
+          uri: http://backend-core:31313
           predicates:
             - Path=/auth-anon/**
           filters:
             - RewritePath=/auth-anon/api/(?<path>.*), /$\{path}
             - name: BlockRequestGatewayFilter
         - id: javaServiceTreeFrameworkBackendServer-AuthUser
-          uri: http://313.co.kr:31313
+          uri: http://backend-core:31313
           predicates:
             - Path=/auth-user/**
           filters:
             - RewritePath=/auth-user/api/(?<path>.*), /$\{path}
         - id: javaServiceTreeFrameworkBackendServer-AdminUser
-          uri: http://313.co.kr:31313
+          uri: http://backend-core:31313
           predicates:
             - Path=/auth-admin/**
           filters:
             - RewritePath=/auth-user/api/(?<path>.*), /$\{path}
         - id: javaServiceTreeFrameworkBackendServer-DWR
-          uri: http://313.co.kr:31313/dwr
+          uri: http://backend-core:31313/dwr
           predicates:
             - Path=/dwr/**
           filters:
@@ -61,7 +70,7 @@ spring:
   main:
     web-application-type: reactive
 
-backendURL : http://313.co.kr:31313
+backendURL : http://backend-core:31313
 
 logging:
   level:
