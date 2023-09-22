@@ -30,7 +30,7 @@ public class KeycloakLogoutHandler implements ServerLogoutHandler {
     return logoutFromKeycloak(principal.getIdToken().getTokenValue());
   }
 
-  private Mono<Void> logoutFromKeycloak(String idToken) {
+  public Mono<Void> logoutFromKeycloak(String idToken) {
     String endSessionEndpoint =  serverUrl+"/realms/master/protocol/openid-connect/logout";//추후에 yml 컨피그로 이동 시켜야함
     UriComponentsBuilder builder = UriComponentsBuilder
             .fromUriString(endSessionEndpoint)

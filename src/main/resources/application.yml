@@ -1,15 +1,15 @@
 spring:
   application:
     name: javaServiceTreeFrameworkMiddleProxy
-    zipkin:
-      enabled: true
-      service.name: zipkin-service
-      sender.type: web
-      base-url: http://313.co.kr:9411
   sleuth:
     enabled: true
     sampler:
       probability: 1.0
+  zipkin:
+    enabled: true
+    service.name: zipkin-service
+    sender.type: web
+    base-url: http://313.co.kr:9411
   servlet:
     multipart:
       max-file-size: 10240MB
@@ -17,8 +17,8 @@ spring:
   cloud:
     gateway:
       httpclient:
-        connect-timeout: 300000
-        response-timeout: 300000
+        connect-timeout: 7200000
+        response-timeout: 7200000
 
 server:
   port: 13131
