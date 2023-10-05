@@ -53,6 +53,8 @@ public class SecurityConfiguration {
                                 .pathMatchers("/middle-proxy-api/**").permitAll()
                                 .pathMatchers("/backend-core-api").permitAll()
                                 .pathMatchers("/backend-core-api/**").permitAll()
+                                .pathMatchers("/engine-fire-api").permitAll()
+                                .pathMatchers("/engine-fire-api/**").permitAll()
                                 .pathMatchers("/auth-anon/**","/dwr/**").permitAll()
                                 .pathMatchers("/auth-user/**","/auth-check/**").hasAnyRole("USER", "ADMIN")
                                 .pathMatchers("/auth-admin/**").hasRole("ADMIN")
