@@ -20,6 +20,13 @@ io:
       dns:
         native: false
 
+springfox:
+  documentation:
+    swagger:
+      v2:
+        path: /middle-proxy-api
+    swagger-ui:
+      base-url: /middle-proxy-api
 
 serverUrl: http://www.313.co.kr/auth
 realm: master

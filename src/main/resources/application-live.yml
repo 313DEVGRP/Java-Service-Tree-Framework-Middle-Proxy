@@ -16,6 +16,10 @@ spring:
   cloud:
     gateway:
       routes:
+        - id: javaServiceTreeFrameworkBackendServer-Swagger
+          uri: http://backend-core:31313
+          predicates:
+            - Path=/backend-core-api/**
         - id: javaServiceTreeFrameworkBackendServer-AuthAnon
           uri: http://backend-core:31313
           predicates:

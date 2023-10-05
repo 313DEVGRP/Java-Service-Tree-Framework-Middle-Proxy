@@ -49,9 +49,10 @@ public class SecurityConfiguration {
                 .csrf(CsrfSpec::disable)
                 .authorizeExchange(
                         authorize -> authorize
-                                .pathMatchers("/swagger-ui/**").permitAll()
-                                .pathMatchers("/swagger-resources/**").permitAll()
-                                .pathMatchers("/v2/api-docs/**").permitAll()
+                                .pathMatchers("/middle-proxy-api").permitAll()
+                                .pathMatchers("/middle-proxy-api/**").permitAll()
+                                .pathMatchers("/backend-core-api").permitAll()
+                                .pathMatchers("/backend-core-api/**").permitAll()
                                 .pathMatchers("/auth-anon/**","/dwr/**").permitAll()
                                 .pathMatchers("/auth-user/**","/auth-check/**").hasAnyRole("USER", "ADMIN")
                                 .pathMatchers("/auth-admin/**").hasRole("ADMIN")
