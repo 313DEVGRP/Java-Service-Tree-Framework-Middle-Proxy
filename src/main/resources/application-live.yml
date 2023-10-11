@@ -16,26 +16,34 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: javaServiceTreeFrameworkBackendServer-AuthAnon
+        - id: javaServiceTreeFramework-BackendCore-Swagger
+          uri: http://backend-core:31313
+          predicates:
+            - Path=/backend-core-api/**
+        - id: javaServiceTreeFramework-EngineFire-Swagger
+          uri: http://engine-fire:33333
+          predicates:
+            - Path=/engine-fire-api/**
+        - id: javaServiceTreeFramework-BackendCore-AuthAnon
           uri: http://backend-core:31313
           predicates:
             - Path=/auth-anon/**
           filters:
             - RewritePath=/auth-anon/api/(?<path>.*), /$\{path}
             - name: BlockRequestGatewayFilter
-        - id: javaServiceTreeFrameworkBackendServer-AuthUser
+        - id: javaServiceTreeFramework-BackendCore-AuthUser
           uri: http://backend-core:31313
           predicates:
             - Path=/auth-user/**
           filters:
             - RewritePath=/auth-user/api/(?<path>.*), /$\{path}
-        - id: javaServiceTreeFrameworkBackendServer-AdminUser
+        - id: javaServiceTreeFramework-BackendCore-AdminUser
           uri: http://backend-core:31313
           predicates:
             - Path=/auth-admin/**
           filters:
             - RewritePath=/auth-user/api/(?<path>.*), /$\{path}
-        - id: javaServiceTreeFrameworkBackendServer-DWR
+        - id: javaServiceTreeFramework-BackendCore-DWR
           uri: http://backend-core:31313/dwr
           predicates:
             - Path=/dwr/**
