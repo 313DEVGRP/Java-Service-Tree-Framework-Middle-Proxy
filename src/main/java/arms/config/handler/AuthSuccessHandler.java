@@ -32,18 +32,19 @@ public class AuthSuccessHandler extends RedirectServerAuthenticationSuccessHandl
         OidcUser oidcUser = (OidcUser) authentication.getPrincipal();
         String preferredUsername = oidcUser.getPreferredUsername();
 
-        return
-            webFilterExchange.getExchange().getSession()
-                .flatMap(session -> {
-                    String rdPage = (String)session.getAttributes().get("rd-page");
-                    if(rdPage!=null){
-                        super.setLocation(URI.create(rdPage));
-                    }else{
-                        super.setLocation(URI.create(redirectUrl));
-                    }
-                    return authSuccessAfterDuplicateUserRemove.removeSession(session.getId(), preferredUsername);
-                })
-                .then(super.onAuthenticationSuccess(webFilterExchange,authentication));
+        webFilterExchange.getExchange().getSession()
+            .map(session -> (String)session.getAttributes().get("rd-page"))
+            .subscribe(rdPage->{
+                if(rdPage!=null){
+                    super.setLocation(URI.create(rdPage));
+                }else{
+                    super.setLocation(URI.create(redirectUrl));
+                };
+            });
+
+        return webFilterExchange.getExchange().getSession()
+            .map(session -> authSuccessAfterDuplicateUserRemove.removeSession(session.getId(), preferredUsername))
+            .then(super.onAuthenticationSuccess(webFilterExchange,authentication));
 
     }
 
