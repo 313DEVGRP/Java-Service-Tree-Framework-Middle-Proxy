@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
@@ -18,6 +19,8 @@ import org.springframework.security.web.server.authentication.logout.DelegatingS
 import org.springframework.security.web.server.authentication.logout.WebSessionServerLogoutHandler;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.server.ServerWebExchange;
+import org.springframework.web.server.WebSession;
+
 import reactor.core.publisher.Mono;
 
 @Configuration
@@ -59,19 +62,25 @@ public class SecurityConfiguration {
                 )
                 .exceptionHandling()
                 .authenticationEntryPoint(
-                        (exchange, denied)
-                                -> Mono.error(new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Session is null"))
+                    (exchange, denied)
+                        -> exchange.getSession().map(session->{
+                            String referer = exchange.getRequest().getHeaders().getFirst("referer");
+                            session.getAttributes().put("rd-page",referer);
+                            return Mono.empty();
+                       }).then( Mono.error(new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Session is null")))
                 )
                 .and()
                 .oauth2Login()
                 .authenticationSuccessHandler(
-                        new AuthSuccessHandler(authSuccessAfterDuplicateUserRemove,redirectUrl))
+                        new AuthSuccessHandler(authSuccessAfterDuplicateUserRemove,redirectUrl)
+                )
                 .and()
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutHandler(logoutHandler)
                         .logoutSuccessHandler(((webFilterExchange, authentication) -> {
                             ServerWebExchange exchange = webFilterExchange.getExchange();
+
                             ServerHttpResponse response = exchange.getResponse();
                             response.setStatusCode(HttpStatus.OK);
                             return response.setComplete();
