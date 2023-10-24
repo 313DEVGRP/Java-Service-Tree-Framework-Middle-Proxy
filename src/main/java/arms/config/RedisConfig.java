@@ -25,6 +25,8 @@ public class RedisConfig {
     redisTemplate.setConnectionFactory(factory);
     redisTemplate.setKeySerializer(new StringRedisSerializer());
     redisTemplate.setValueSerializer(new GenericJackson2JsonRedisSerializer());
+    redisTemplate.setHashKeySerializer(new StringRedisSerializer());
+    redisTemplate.setHashValueSerializer(new GenericJackson2JsonRedisSerializer());
     return redisTemplate;
   }
 
@@ -34,7 +36,7 @@ public class RedisConfig {
 
     RedisSerializationContext<String, Object> serializationContext =
         RedisSerializationContext.<String, Object>newSerializationContext(new StringRedisSerializer())
-            .hashKey(new StringRedisSerializer())
+                                                              .hashKey(new StringRedisSerializer())
             .hashValue(new GenericJackson2JsonRedisSerializer())
             .build();
 
