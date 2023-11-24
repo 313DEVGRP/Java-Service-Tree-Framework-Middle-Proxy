@@ -82,7 +82,7 @@ backendURL : http://backend-core:31313
 
 logging:
   level:
-    proxy: debug
+    proxy: info
 
 ribbon:
   eureka:
