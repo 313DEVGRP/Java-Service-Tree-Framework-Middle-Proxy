@@ -13,7 +13,6 @@ public class ErrorAdvice {
 
   @ExceptionHandler(value = ClientAuthorizationException.class)
   public Mono<?> onException() {
-    System.out.println("@@@@@@@@@@@@@@@@@@@");
     return Mono.error(new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Session is null"));
   }
 
