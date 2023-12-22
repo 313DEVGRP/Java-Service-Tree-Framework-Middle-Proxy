@@ -17,6 +17,7 @@ import org.springframework.security.config.web.server.ServerHttpSecurity.CsrfSpe
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.web.server.authentication.logout.DelegatingServerLogoutHandler;
 import org.springframework.security.web.server.authentication.logout.WebSessionServerLogoutHandler;
+import org.springframework.security.web.server.context.NoOpServerSecurityContextRepository;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebSession;
@@ -52,6 +53,7 @@ public class SecurityConfiguration {
                 .csrf(CsrfSpec::disable)
                 .authorizeExchange(
                         authorize -> authorize
+                                .pathMatchers("/login").permitAll()
                                 .pathMatchers("/middle-proxy-api").permitAll()
                                 .pathMatchers("/middle-proxy-api/**").permitAll()
                                 .pathMatchers("/backend-core-api").permitAll()
@@ -75,7 +77,7 @@ public class SecurityConfiguration {
                 .and()
                 .oauth2Login()
                 .authenticationSuccessHandler(
-                        new AuthSuccessHandler(authSuccessAfterDuplicateUserRemove,redirectUrl)
+                    new AuthSuccessHandler(authSuccessAfterDuplicateUserRemove,redirectUrl)
                 )
                 .and()
                 .logout(logout -> logout
