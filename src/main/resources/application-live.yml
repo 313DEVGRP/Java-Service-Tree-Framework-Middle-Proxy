@@ -52,7 +52,7 @@ spring:
   security:
     auth:
       success:
-        redirect-url: /313devgrp/arms/template.html?page=pdService
+        redirect-url: /arms/template.html?page=pdService
 
     oauth2:
       client:
