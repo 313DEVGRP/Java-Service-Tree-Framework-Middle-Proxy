@@ -30,7 +30,7 @@ public class UserController {
           ServerHttpResponse response = exchange.getResponse();
           response.setStatusCode(HttpStatus.SEE_OTHER);
           response.getHeaders().setLocation(
-              URI.create("http://www.313.co.kr/auth/realms/master/protocol/openid-connect/logout"));
+              URI.create("http://www.a-rms.net/auth/realms/master/protocol/openid-connect/logout"));
         }))
         .then(exchange.getResponse().setComplete()));
 
