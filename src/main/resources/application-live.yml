@@ -3,7 +3,7 @@ spring:
     store-type: redis
   redis:
       host: redis
-    port: 6379
+      port: 6379
   sleuth:
     enabled: true
     sampler:
