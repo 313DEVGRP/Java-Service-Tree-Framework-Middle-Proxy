@@ -13,13 +13,6 @@ spring:
     service.name: zipkin-service
     sender.type: web
     base-url: http://zipkin:9411
-  cloud:
-    gateway:
-      httpclient:
-        pool:
-          max-connections: 250
-          max-idle-time: 20000
-          max-life-time: 60000
       routes:
         - id: javaServiceTreeFramework-BackendCore-Swagger
           uri: http://backend-core:31313
