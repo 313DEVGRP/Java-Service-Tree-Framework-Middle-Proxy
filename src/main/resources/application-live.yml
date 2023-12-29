@@ -2,7 +2,7 @@ spring:
   session:
     store-type: redis
   redis:
-    host: redis
+      host: redis
     port: 6379
   sleuth:
     enabled: true
@@ -15,6 +15,11 @@ spring:
     base-url: http://zipkin:9411
   cloud:
     gateway:
+      httpclient:
+        pool:
+          max-connections: 250
+          max-idle-time: 20
+          max-life-time: 60
       routes:
         - id: javaServiceTreeFramework-BackendCore-Swagger
           uri: http://backend-core:31313
