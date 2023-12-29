@@ -1,6 +1,6 @@
 {
   "realm": "master",
-  "auth-server-url": "http://www.a-rms.net/auth/",
+  "auth-server-url": "http://www.313.co.kr/auth/",
   "ssl-required": "none",
   "resource": "Java-Service-Tree-Framework-Middle-Proxy",
   "verify-token-audience": true,
