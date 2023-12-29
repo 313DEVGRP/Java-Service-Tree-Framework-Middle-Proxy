@@ -42,7 +42,7 @@ spring:
           predicates:
             - Path=/auth-admin/**
           filters:
-            - RewritePath=/auth-user/api/(?<path>.*), /$\{path}
+            - RewritePath=/auth-admin/api/(?<path>.*), /$\{path}
         - id: javaServiceTreeFramework-BackendCore-DWR
           uri: http://backend-core:31313/dwr
           predicates:

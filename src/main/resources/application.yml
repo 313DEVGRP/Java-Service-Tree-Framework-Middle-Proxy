@@ -10,10 +10,6 @@ spring:
       httpclient:
         connect-timeout: 7200000
         response-timeout: 7200000
-        pool:
-          max-connections: 500
-          max-idle-time: 20000 #20 sec
-          max-life-time: 60000 #60 sec
 
 server:
   port: 13131
