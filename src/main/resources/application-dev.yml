@@ -8,13 +8,16 @@ spring:
     enabled: true
     sampler:
       probability: 1.0
-  zipkin:
-    enabled: true
-    service.name: zipkin-service
-    sender.type: web
-    base-url: http://313.co.kr:9411
+#  zipkin:
+#    enabled: true
+#    service.name: zipkin-service
+#    sender.type: web
+#    base-url: http://313.co.kr:9411
   cloud:
     gateway:
+      httpclient:
+        pool:
+          max-idle-time: 1
       routes:
         - id: javaServiceTreeFramework-BackendCore-Swagger
           uri: http://127.0.0.1:31313
