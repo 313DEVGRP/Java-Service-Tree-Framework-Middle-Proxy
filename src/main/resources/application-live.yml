@@ -13,6 +13,8 @@ spring:
     service.name: zipkin-service
     sender.type: web
     base-url: http://zipkin:9411
+  cloud:
+    gateway:
       routes:
         - id: javaServiceTreeFramework-BackendCore-Swagger
           uri: http://backend-core:31313
