@@ -18,8 +18,8 @@ spring:
       httpclient:
         pool:
           max-connections: 250
-          max-idle-time: 20
-          max-life-time: 60
+          max-idle-time: 20000
+          max-life-time: 60000
       routes:
         - id: javaServiceTreeFramework-BackendCore-Swagger
           uri: http://backend-core:31313
