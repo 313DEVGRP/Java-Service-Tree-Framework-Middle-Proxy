@@ -31,9 +31,3 @@ springfox:
         path: /middle-proxy-api
     swagger-ui:
       base-url: /middle-proxy-api
-
-serverUrl: http://www.313.co.kr/auth
-realm: master
-tokenUrl: http://www.313.co.kr/auth/realms/master/protocol/openid-connect/token
-clientId: Java-Service-Tree-Framework-Middle-Proxy
-clientSecret: f1011641-e4d4-4dc8-b177-7834fcf7d041
