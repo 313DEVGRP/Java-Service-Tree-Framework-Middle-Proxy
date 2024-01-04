@@ -43,7 +43,6 @@ public class UserController {
     return sessionMono.map(WebSession::getId);
   }
 
-  @CrossOrigin(origins = "http://localhost , http://127.0.0.1 , http://localhost:9999 , http://127.0.0.1:9999 , http://313.co.kr , http://www.313.co.kr , http://313.co.kr:9999 , http://www.313.co.kr:9999 , http://a-rms.net , http://www.a-rms.net , http://www.a-rms.net:9999 , http://a-rms.net:9999  , http://arms.mmc-mad.com")
   @GetMapping("/auth-user/me")
   public Mono<Map<String,Object>> getUser(
       @ApiIgnore @RegisteredOAuth2AuthorizedClient OAuth2AuthorizedClient auth2AuthorizedClient)
