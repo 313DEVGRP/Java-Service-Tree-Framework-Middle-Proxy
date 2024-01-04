@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ServerWebExchange;
@@ -43,7 +42,6 @@ public class UserController {
     return sessionMono.map(WebSession::getId);
   }
 
-  @CrossOrigin(origins = "http://www.313.co.kr:9999/")
   @GetMapping("/auth-user/me")
   public Mono<Map<String,Object>> getUser(
       @ApiIgnore @RegisteredOAuth2AuthorizedClient OAuth2AuthorizedClient auth2AuthorizedClient)

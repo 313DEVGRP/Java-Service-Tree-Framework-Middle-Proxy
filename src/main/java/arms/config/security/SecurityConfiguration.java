@@ -49,8 +49,6 @@ public class SecurityConfiguration {
         );
 
         return http
-                .cors().disable()
-                .csrf().disable()
                 .cors(CorsSpec::disable)
                 .csrf(CsrfSpec::disable)
                 .authorizeExchange(

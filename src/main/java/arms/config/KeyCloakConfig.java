@@ -19,22 +19,22 @@ public class KeyCloakConfig {
     public static String clientSecret;
     public static Keycloak keycloak;
 
-    @Value("${spring.security.oauth2.client.registration.middle-proxy.server-url}")
+    @Value("${serverUrl}")
     public void setServerUrl(String serverUrl) {
         KeyCloakConfig.serverUrl = serverUrl;
     }
 
-    @Value("${spring.security.oauth2.client.registration.middle-proxy.realm}")
+    @Value("${realm}")
     public void setRealm(String realm) {
         KeyCloakConfig.realm = realm;
     }
 
-    @Value("${spring.security.oauth2.client.registration.middle-proxy.client-id}")
+    @Value("${clientId}")
     public void setClientId(String clientId) {
         KeyCloakConfig.clientId = clientId;
     }
 
-    @Value("${spring.security.oauth2.client.registration.middle-proxy.client-secret}")
+    @Value("${clientSecret}")
     public void setClientSecret(String clientSecret) {
         KeyCloakConfig.clientSecret = clientSecret;
     }
