@@ -19,9 +19,10 @@ spring:
       globalcors:
         cors-configurations:
           '[/**]':
-          allowed-origins: "*"
-          allowed-methods: "*"
-          allowed-headers: "*"
+            allowed-origin-patterns: "*"
+            allowed-headers: "*"
+            allowed-methods: "*"
+            allow-credentials: true
 
 server:
   port: 13131
