@@ -3,6 +3,7 @@ package arms.util.scheduler;
 
 import arms.util.external_communicate.백엔드코어통신기;
 import arms.util.external_communicate.엔진통신기;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import java.util.Calendar;
 
 @Slf4j
 @Component
+@AllArgsConstructor
 public class 암스스케쥴러 {
 
     @Autowired
