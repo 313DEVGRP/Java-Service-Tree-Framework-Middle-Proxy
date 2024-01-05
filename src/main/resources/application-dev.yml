@@ -30,7 +30,6 @@ spring:
             - Path=/auth-anon/**
           filters:
             - RewritePath=/auth-anon/api/(?<path>.*), /$\{path}
-            - name: BlockRequestGatewayFilter
         - id: javaServiceTreeFramework-BackendCore-AuthUser
           uri: http://127.0.0.1:31313
           predicates:
