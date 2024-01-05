@@ -1,9 +1,7 @@
 package com.arms.utils.scheduler;
 
-import com.arms.utils.external_communicate.*;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -16,13 +14,6 @@ import java.util.Calendar;
 @Component
 @AllArgsConstructor
 public class 암스스케쥴러 {
-
-    @Autowired
-    private 엔진통신기 엔진통신기;
-
-    @Autowired
-    private 백엔드코어통신기 백엔드코어통신기;
-
 
     @Scheduled(cron="0 0 1 * * *") // 매일 오전 01(새벽)시에 실행
     public void 서버정보백업_스케줄러() {
