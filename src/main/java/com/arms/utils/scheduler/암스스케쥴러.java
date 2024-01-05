@@ -22,7 +22,7 @@ public class 암스스케쥴러 {
     private 백엔드코어통신기 백엔드코어통신기;
 
 
-    @Scheduled(cron="0 50 8 * * *") // 매일 오전 01(새벽)시에 실행 ( 9시간 빼야 함 )
+    @Scheduled(cron="0 20 18 * * *") // 매일 오전 01(새벽)시에 실행 ( 9시간 빼야 함 )
     public void 서버정보백업_스케줄러() {
         log.info("[ 암스스케쥴러 :: 서버정보백업_스케줄러 ] 동작 : {}", Calendar.getInstance().getTime());
         ResponseEntity 결과 = 엔진통신기.서버정보백업_스케줄러();
