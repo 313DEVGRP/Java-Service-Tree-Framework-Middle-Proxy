@@ -1,6 +1,6 @@
 package com.arms.api.controller;
 
-import com.arms.config.KeyCloakConfig;
+import com.arms.config.*;
 import org.keycloak.admin.client.resource.UserProfileResource;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.slf4j.Logger;
