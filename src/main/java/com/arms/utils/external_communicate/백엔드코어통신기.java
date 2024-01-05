@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 public interface 백엔드코어통신기 {
 
     @GetMapping("/arms/scheduler/pdservice/reqstatus/loadToES")
-    ResponseEntity 각_제품서비스_별_요구사항이슈_조회_및_ES저장();
+    String 각_제품서비스_별_요구사항이슈_조회_및_ES저장();
 
     @GetMapping("/arms/scheduler/pdservice/reqstatus/updateFromES")
-    ResponseEntity 각_제품서비스_별_요구사항_Status_업데이트_From_ES();
+    String 각_제품서비스_별_요구사항_Status_업데이트_From_ES();
 
 }

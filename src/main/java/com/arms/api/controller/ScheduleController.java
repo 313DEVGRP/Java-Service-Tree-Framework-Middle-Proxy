@@ -50,19 +50,19 @@ public class ScheduleController {
 
     @RequestMapping(value = "/auth-anon/schedule/reqissue_es_store", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity 각_제품서비스_별_요구사항이슈_조회_및_ES저장() {
+    public String 각_제품서비스_별_요구사항이슈_조회_및_ES저장() {
 
         logger.info("[ 암스스케쥴러 :: 각_제품서비스_별_요구사항이슈_조회_및_ES저장 ] 동작 : {}", Calendar.getInstance().getTime());
-        ResponseEntity 결과 = 백엔드코어통신기.각_제품서비스_별_요구사항이슈_조회_및_ES저장();
+        String 결과 = 백엔드코어통신기.각_제품서비스_별_요구사항이슈_조회_및_ES저장();
         return 결과;
     }
 
     @RequestMapping(value = "/auth-anon/schedule/issue_es_load", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity 각_제품서비스_별_요구사항_Status_업데이트_From_ES() {
+    public String 각_제품서비스_별_요구사항_Status_업데이트_From_ES() {
 
         logger.info("[ 암스스케쥴러 :: 각_제품서비스_별_요구사항_Status_업데이트_From_ES ] 동작 : {}", Calendar.getInstance().getTime());
-        ResponseEntity 결과 = 백엔드코어통신기.각_제품서비스_별_요구사항_Status_업데이트_From_ES();
+        String 결과 = 백엔드코어통신기.각_제품서비스_별_요구사항_Status_업데이트_From_ES();
         return 결과;
     }
 
