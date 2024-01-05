@@ -1,6 +1,7 @@
 package com.arms.api.controller;
 
 import com.arms.config.*;
+import com.arms.utils.external_communicate.vo.서버정보_엔티티;
 import com.arms.utils.external_communicate.내부통신기;
 import org.keycloak.admin.client.resource.UserProfileResource;
 import org.keycloak.representations.idm.UserRepresentation;
@@ -31,19 +32,19 @@ public class ScheduleController {
 
     @RequestMapping(value = "/auth-anon/schedule/server_info_backup", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity 서버정보백업_스케줄러() {
+    public Iterable<서버정보_엔티티> 서버정보백업_스케줄러() {
 
         logger.info("[ 암스스케쥴러 :: 서버정보백업_스케줄러 ] 동작 : {}", Calendar.getInstance().getTime());
-        ResponseEntity 결과 = 엔진통신기.서버정보백업_스케줄러();
+        Iterable<서버정보_엔티티> 결과 = 엔진통신기.서버정보백업_스케줄러();
         return 결과;
     }
 
     @RequestMapping(value = "/auth-anon/schedule/jiraissue_index_backup", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity 지라이슈_인덱스백업() {
+    public boolean 지라이슈_인덱스백업() {
 
         logger.info("[ 암스스케쥴러 :: 지라이슈_인덱스백업 ] 동작 : {}", Calendar.getInstance().getTime());
-        ResponseEntity 결과 = 엔진통신기.지라이슈_인덱스백업();
+        boolean 결과 = 엔진통신기.지라이슈_인덱스백업();
         return 결과;
     }
 
