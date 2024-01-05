@@ -4,7 +4,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@FeignClient(name = "loopback", url = "http://127.0.0.1:31313")
+@FeignClient(name = "loopback", url = "http://127.0.0.1:13131")
 public interface 내부통신기 {
 
     @GetMapping("/auth-anon/schedule/server_info_backup")
