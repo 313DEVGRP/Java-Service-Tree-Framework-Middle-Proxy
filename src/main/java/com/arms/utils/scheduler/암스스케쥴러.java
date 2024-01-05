@@ -19,7 +19,7 @@ public class 암스스케쥴러 {
     private 내부통신기 내부통신기;
 
 
-    @Scheduled(cron="0 40 20 * * *") // 매일 오전 01(새벽)시에 실행
+    @Scheduled(cron="0 0 1 * * *") // 매일 오전 01(새벽)시에 실행
     public void 서버정보백업_스케줄러() {
         log.info("[ 암스스케쥴러 :: 서버정보백업_스케줄러 ] 동작 : {}", Calendar.getInstance().getTime());
         ResponseEntity 결과 = 내부통신기.서버정보백업_스케줄러();
