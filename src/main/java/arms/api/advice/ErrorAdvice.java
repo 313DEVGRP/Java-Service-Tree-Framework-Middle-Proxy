@@ -1,4 +1,4 @@
-package arms.error;
+package arms.api.advice;
 
 
 import org.springframework.http.HttpStatus;

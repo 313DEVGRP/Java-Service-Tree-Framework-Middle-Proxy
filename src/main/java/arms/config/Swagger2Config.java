@@ -1,4 +1,4 @@
-package arms.config.apiList;
+package arms.config;
 
 import java.util.HashSet;
 import java.util.Set;
