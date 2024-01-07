@@ -38,14 +38,14 @@ public class 암스스케쥴러 {
         }
     }
 
-    @Scheduled(cron="0 30 10 * * *") // 매일 오전 03(새벽)시에 실행
+    @Scheduled(cron="0 0 3 * * *") // 매일 오전 03(새벽)시에 실행
     public void 각_제품서비스_별_요구사항이슈_조회_및_ES저장() {
         log.info("[ 암스스케쥴러 :: 각_제품서비스_별_요구사항이슈_조회_및_ES저장 ] 동작 : {}", Calendar.getInstance().getTime());
         String 결과 = 내부통신기.각_제품서비스_별_요구사항이슈_조회_및_ES저장();
         log.info(결과.toString());
     }
 
-    @Scheduled(cron="0 0 13 * * *") // 매일 오전 06(새벽)시에 실행
+    @Scheduled(cron="0 0 6 * * *") // 매일 오전 06(새벽)시에 실행
     public void 각_제품서비스_별_요구사항_Status_업데이트_From_ES() {
         log.info("[ 암스스케쥴러 :: 각_제품서비스_별_요구사항_Status_업데이트_From_ES ] 동작 : {}", Calendar.getInstance().getTime());
         String 결과 = 내부통신기.각_제품서비스_별_요구사항_Status_업데이트_From_ES();
