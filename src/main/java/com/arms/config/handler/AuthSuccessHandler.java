@@ -40,7 +40,8 @@ public class AuthSuccessHandler extends RedirectServerAuthenticationSuccessHandl
             });
 
         return webFilterExchange.getExchange().getSession()
-                .flatMap(session -> authSuccessAfterDuplicateUserRemove.removeSession(session.getId(), preferredUsername))
+                //중복 로그인 제거
+                //.flatMap(session -> authSuccessAfterDuplicateUserRemove.removeSession(session.getId(), preferredUsername))
                 .then(super.onAuthenticationSuccess(webFilterExchange,authentication));
 
     }

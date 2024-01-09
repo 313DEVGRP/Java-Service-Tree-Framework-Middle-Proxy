@@ -80,7 +80,7 @@ backendURL : http://127.0.0.1:31313
 
 logging:
   level:
-    proxy: debug
+    org.springframework.cloud.gateway: debug
 
 ribbon:
   eureka:

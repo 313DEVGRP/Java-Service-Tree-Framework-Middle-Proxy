@@ -18,7 +18,7 @@ import org.springframework.web.bind.support.WebExchangeBindException;
 import static com.arms.api.response.CommonResponse.error;
 
 @ControllerAdvice
-public class ErrorAdvice {
+public class ErrorControllerAdvice {
 
   @ExceptionHandler(value = ClientAuthorizationException.class)
   public Mono<?> onException() {

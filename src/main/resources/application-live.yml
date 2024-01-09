@@ -81,7 +81,7 @@ backendURL : http://backend-core:31313
 
 logging:
   level:
-    proxy: info
+    org.springframework.cloud.gateway: debug
 
 ribbon:
   eureka:

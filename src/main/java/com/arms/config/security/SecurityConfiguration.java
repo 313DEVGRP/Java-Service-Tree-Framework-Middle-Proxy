@@ -46,8 +46,6 @@ public class SecurityConfiguration {
         );
 
         return http
-                .cors().disable()
-                .csrf().disable()
                 .cors(CorsSpec::disable)
                 .csrf(CsrfSpec::disable)
                 .authorizeExchange(
@@ -84,7 +82,6 @@ public class SecurityConfiguration {
                         .logoutHandler(logoutHandler)
                         .logoutSuccessHandler(((webFilterExchange, authentication) -> {
                             ServerWebExchange exchange = webFilterExchange.getExchange();
-
                             ServerHttpResponse response = exchange.getResponse();
                             response.setStatusCode(HttpStatus.OK);
                             return response.setComplete();

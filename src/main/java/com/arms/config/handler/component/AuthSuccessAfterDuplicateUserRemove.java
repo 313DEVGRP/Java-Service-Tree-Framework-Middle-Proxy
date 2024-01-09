@@ -14,6 +14,7 @@ import reactor.core.publisher.Mono;
 public class AuthSuccessAfterDuplicateUserRemove  {
     private final ReactiveRedisSessionRepository reactiveRedisSessionRepository;
     private final KeycloakLogoutHandler keycloakLogoutHandler;
+
     private static final String SESSION_KEY_PATTERN = "spring:session:sessions:";
     private static final String USER_INFO_KEY = "sessionAttr:SPRING_SECURITY_CONTEXT";
 

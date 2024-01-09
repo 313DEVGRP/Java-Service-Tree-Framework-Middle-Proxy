@@ -1,6 +1,10 @@
 spring:
   application:
     name: javaServiceTreeFrameworkMiddleProxy
+  sleuth:
+    enabled: true
+    sampler:
+      probability: 1.0
   servlet:
     multipart:
       max-file-size: 10240MB
