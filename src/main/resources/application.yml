@@ -1,6 +1,10 @@
 spring:
   application:
     name: javaServiceTreeFrameworkMiddleProxy
+  sleuth:
+    enabled: true
+    sampler:
+      probability: 1.0
   servlet:
     multipart:
       max-file-size: 10240MB
@@ -10,6 +14,11 @@ spring:
       httpclient:
         connect-timeout: 7200000
         response-timeout: 7200000
+        pool:
+          max-connections: 500
+          max-idle-time: 20000 #20 sec
+          max-life-time: 60000 #60 sec
+
 
 server:
   port: 13131
@@ -28,8 +37,9 @@ springfox:
     swagger-ui:
       base-url: /middle-proxy-api
 
-serverUrl: http://www.313.co.kr/auth
-realm: master
-tokenUrl: http://www.313.co.kr/auth/realms/master/protocol/openid-connect/token
-clientId: Java-Service-Tree-Framework-Middle-Proxy
-clientSecret: f1011641-e4d4-4dc8-b177-7834fcf7d041
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 18000000 #180분
+        readTimeout: 18000000

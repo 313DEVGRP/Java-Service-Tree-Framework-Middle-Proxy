@@ -101,8 +101,8 @@ ext {
     metadataUrl = "${repositoryUrl}313devgrp/Java-Service-Tree-Framework-Middle-Proxy/maven-metadata.xml"
 
     //version 정보
-    majorVersion = 23
-    minorVersion = 12
+    majorVersion = 24
+    minorVersion = 01
     //patchVersion = auto generation
 
     if (Os.isFamily(Os.FAMILY_WINDOWS)) {
@@ -261,8 +261,24 @@ dependencies {
     // netty mac os dev용
     implementation ('io.netty:netty-resolver-dns-native-macos:4.1.90.Final:osx-aarch_64')
 
+    // netty mac os dev용
+    implementation ('io.netty:netty-resolver-dns-native-macos:4.1.90.Final:osx-aarch_64')
+
     // spring config
-    //implementation 'org.springframework.cloud:spring-cloud-config-server'
+    implementation('org.springframework.cloud:spring-cloud-config-server'){
+        exclude group: 'org.apache.tomcat.embed', module: 'tomcat-embed-core'
+        exclude group: 'org.apache.tomcat.embed', module: 'tomcat-embed-el'
+        exclude group: 'org.apache.tomcat.embed', module: 'tomcat-embed-websocket'
+    }
+
+    // junit test 용
+    testCompileOnly 'org.projectlombok:lombok'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude module: 'junit'
+    }
+
+    //오픈페인
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:2.2.8.RELEASE'
 
     // Zipkin
     implementation 'org.springframework.cloud:spring-cloud-starter-sleuth:3.1.3'
