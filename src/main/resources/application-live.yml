@@ -12,7 +12,7 @@ spring:
     enabled: true
     service.name: zipkin-service
     sender.type: web
-    base-url: http://zipkin:9411
+    base-url: https://zipkin:9411
   cloud:
     gateway:
       routes:
@@ -57,18 +57,18 @@ spring:
       client:
         provider:
           keycloak:
-            issuer-uri: http://${ARMS_BASE_ADDR}/auth/realms/master
-            token-uri: http://${ARMS_BASE_ADDR}/auth/realms/master/protocol/openid-connect/token
-            authorization-uri: http://${ARMS_BASE_ADDR}/auth/realms/master/protocol/openid-connect/auth
-            user-info-uri: http://${ARMS_BASE_ADDR}/auth/realms/master/protocol/openid-connect/userinfo
-            jwk-set-uri: http://${ARMS_BASE_ADDR}/auth/realms/master/protocol/openid-connect/certs
+            issuer-uri: https://${ARMS_BASE_ADDR}/auth/realms/master
+            token-uri: https://${ARMS_BASE_ADDR}/auth/realms/master/protocol/openid-connect/token
+            authorization-uri: https://${ARMS_BASE_ADDR}/auth/realms/master/protocol/openid-connect/auth
+            user-info-uri: https://${ARMS_BASE_ADDR}/auth/realms/master/protocol/openid-connect/userinfo
+            jwk-set-uri: https://${ARMS_BASE_ADDR}/auth/realms/master/protocol/openid-connect/certs
             user-name-attribute: preferred_username
 
         registration:
           middle-proxy:
             scope: openid
             realm: master
-            server-url: http://${ARMS_BASE_ADDR}/auth
+            server-url: https://${ARMS_BASE_ADDR}/auth
             provider: keycloak
             client-id: Java-Service-Tree-Framework-Middle-Proxy
             client-secret: f1011641-e4d4-4dc8-b177-7834fcf7d041
