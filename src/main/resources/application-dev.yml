@@ -2,7 +2,7 @@ spring:
   session:
     store-type: redis
   redis:
-    host: 313.co.kr
+    host: www.313.co.kr
     port: 6379
   sleuth:
     enabled: true
@@ -12,7 +12,7 @@ spring:
     enabled: true
     service.name: zipkin-service
     sender.type: web
-    base-url: http://313.co.kr:9411
+    base-url: http://www.313.co.kr:9411
   cloud:
     gateway:
       routes:
@@ -57,17 +57,17 @@ spring:
       client:
         provider:
           keycloak:
-            issuer-uri: http://313.co.kr/auth/realms/master
-            token-uri: http://313.co.kr/auth/realms/master/protocol/openid-connect/token
-            authorization-uri: http://313.co.kr/auth/realms/master/protocol/openid-connect/auth
-            user-info-uri: http://313.co.kr/auth/realms/master/protocol/openid-connect/userinfo
-            jwk-set-uri: http://313.co.kr/auth/realms/master/protocol/openid-connect/certs
+            issuer-uri: http://www.313.co.kr/auth/realms/master
+            token-uri: http://www.313.co.kr/auth/realms/master/protocol/openid-connect/token
+            authorization-uri: http://www.313.co.kr/auth/realms/master/protocol/openid-connect/auth
+            user-info-uri: http://www.313.co.kr/auth/realms/master/protocol/openid-connect/userinfo
+            jwk-set-uri: http://www.313.co.kr/auth/realms/master/protocol/openid-connect/certs
             user-name-attribute: preferred_username
         registration:
           middle-proxy:
             scope: openid
             realm: master
-            server-url: http://313.co.kr/auth
+            server-url: http://www.313.co.kr/auth
             provider: keycloak
             client-id: Java-Service-Tree-Framework-Middle-Proxy
             client-secret: f1011641-e4d4-4dc8-b177-7834fcf7d041
