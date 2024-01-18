@@ -112,7 +112,7 @@ ext {
     }else {
         exec {
             executable "wget"
-            args "-O", "${projectDir}/metadata.xml", "${metadataUrl} --no-check-certificate"
+            args "-O", "${projectDir}/metadata.xml", "--no-check-certificate", "${metadataUrl}"
         }
     }
     def metadataFile = new XmlSlurper().parse(new File("${projectDir}/metadata.xml"))
