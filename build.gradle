@@ -212,7 +212,7 @@ publishing {
 repositories {
     mavenCentral()
     maven {
-        url 'https://www.313.co.kr/nexus/repository/ple-releases/'
+        url 'http://www.313.co.kr/nexus/repository/ple-releases/'
         allowInsecureProtocol true
     }
 }
