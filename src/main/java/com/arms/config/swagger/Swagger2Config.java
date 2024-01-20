@@ -1,4 +1,4 @@
-package com.arms.config;
+package com.arms.config.swagger;
 
 import java.util.HashSet;
 import java.util.Set;
