@@ -43,3 +43,15 @@ feign:
       default:
         connectTimeout: 18000000 #180분
         readTimeout: 18000000
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000
+    "엔진통신기#이슈_검색엔진_벌크_저장(Long,String,Long,Long)":
+      execution:
+        timeout:
+          enabled: false
