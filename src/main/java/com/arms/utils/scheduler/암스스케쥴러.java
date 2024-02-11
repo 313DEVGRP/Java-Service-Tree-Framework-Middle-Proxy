@@ -27,7 +27,8 @@ public class 암스스케쥴러 {
         log.info(결과.toString());
     }
 
-    @Scheduled(cron="0 30 1 * * *") // 매일 오전 01(새벽)시 30분에 실행
+    // @Scheduled(cron="0 30 1 * * *") // 매일 오전 01(새벽)시 30분에 실행
+    // 엘라스틱 서치 롤링 인덱스를 사용 하기 때문에 자동 백업 중단 24.02.11
     public void 지라이슈_인덱스백업() {
         log.info("[ 암스스케쥴러 :: 지라이슈_인덱스백업 ] 동작 : {}", Calendar.getInstance().getTime());
         boolean 결과 = 내부통신기.지라이슈_인덱스백업();
