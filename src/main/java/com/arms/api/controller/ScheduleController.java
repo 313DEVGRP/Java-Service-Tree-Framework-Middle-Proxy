@@ -57,6 +57,22 @@ public class ScheduleController {
         return 결과;
     }
 
+    @RequestMapping(value = "/auth-anon/schedule/increment/reqissue_es_store", method = RequestMethod.GET)
+    @ResponseBody
+    public String 각_제품서비스_별_요구사항_증분이슈_조회_및_ES저장() {
+        long 시작시간 = System.currentTimeMillis();
+
+        logger.info("[ 암스스케쥴러 :: 각_제품서비스_별_요구사항_증분이슈_조회_및_ES저장 ] 동작 : {}", Calendar.getInstance().getTime());
+        String 결과 = 백엔드코어통신기.각_제품서비스_별_요구사항_증분이슈_조회_및_ES저장();
+
+        long 종료시간 = System.currentTimeMillis();
+
+        long 걸린시간 = 종료시간 - 시작시간;
+        logger.info("스케줄러 호출이 걸린 시간: " + 걸린시간 + "밀리초");
+
+        return 결과;
+    }
+
     @RequestMapping(value = "/auth-anon/schedule/issue_es_load", method = RequestMethod.GET)
     @ResponseBody
     public String 각_제품서비스_별_요구사항_Status_업데이트_From_ES() {
