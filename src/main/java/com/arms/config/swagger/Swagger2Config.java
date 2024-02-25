@@ -26,7 +26,7 @@ public class Swagger2Config {
             .produces(getProduceContentTypes())
             .apiInfo(apiInfo())
             .select()
-            .apis(RequestHandlerSelectors.basePackage("arms"))
+            .apis(RequestHandlerSelectors.basePackage("com.arms"))
             .paths(PathSelectors.any())
             .build()
             .genericModelSubstitutes(Mono.class, Flux.class)

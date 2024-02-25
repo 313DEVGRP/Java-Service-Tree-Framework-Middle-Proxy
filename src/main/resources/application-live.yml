@@ -48,6 +48,12 @@ spring:
             - Path=/dwr/**
           filters:
             - RewritePath=/(?<path>.*), /$\{path}
+        - id: javaServiceTreeFramework-EngineFire-Search
+          uri: http://engine-fire:33333
+          predicates:
+            - Path=/engine-search-api/**
+          filters:
+            - RewritePath=/engine-search-api/(?<path>.*), /$\{path}
   security:
     auth:
       success:
