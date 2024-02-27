@@ -17,6 +17,9 @@ public interface 내부통신기 {
     @GetMapping("/auth-anon/schedule/reqissue_es_store")
     String 각_제품서비스_별_요구사항이슈_조회_및_ES저장();
 
+    @GetMapping("/auth-anon/schedule/increment/reqissue_es_store")
+    String 각_제품서비스_별_요구사항_증분이슈_조회_및_ES저장();
+
     @GetMapping("/auth-anon/schedule/issue_es_load")
     String 각_제품서비스_별_요구사항_Status_업데이트_From_ES();
 
