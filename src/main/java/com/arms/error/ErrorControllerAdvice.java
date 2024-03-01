@@ -1,6 +1,9 @@
 package com.arms.error;
 
 
+import com.arms.notification.slack.SlackNotificationService;
+import com.arms.notification.slack.SlackProperty;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.oauth2.client.ClientAuthorizationException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -18,7 +21,10 @@ import org.springframework.web.bind.support.WebExchangeBindException;
 import static com.arms.api.response.CommonResponse.error;
 
 @ControllerAdvice
+@RequiredArgsConstructor
 public class ErrorControllerAdvice {
+
+  private final SlackNotificationService slackNotificationService;
 
   @ExceptionHandler(value = ClientAuthorizationException.class)
   public Mono<?> onException() {
@@ -56,6 +62,12 @@ public class ErrorControllerAdvice {
   @ExceptionHandler(IllegalArgumentException.class)
   public <E> ResponseEntity<ApiResult<E>> handleArgumentException(IllegalArgumentException e) {
     return newResponse(e.getMessage(),ErrorCode.COMMON_INVALID_PARAMETER,HttpStatus.BAD_REQUEST);
+  }
+
+  @ExceptionHandler(Exception.class)
+  public <E> ResponseEntity<ApiResult<E>> handleAllException(Exception e) {
+    slackNotificationService.sendMessageToChannel(SlackProperty.Channel.middleproxy, e);
+    return newResponse(e.getMessage(), ErrorCode.COMMON_SYSTEM_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
   }
 
 }
