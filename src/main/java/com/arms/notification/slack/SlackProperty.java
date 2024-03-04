@@ -16,7 +16,7 @@ public class SlackProperty {
 
 
     public enum Channel {
-        middleproxy;
+        middleproxy, schedule;
 
     }
 
