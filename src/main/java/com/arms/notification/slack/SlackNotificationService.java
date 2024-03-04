@@ -40,6 +40,28 @@ public class SlackNotificationService {
         }
     }
 
+    public void sendMessageToChannel(final SlackProperty.Channel channel, final String message) {
+        if (isLive()) {
+            String title = MessageFormat.format("[{0}] {1}", slackProperty.getProfile(), slackProperty.getServiceName());
+
+            SlackMessageDTO slackMessageDTO = SlackMessageDTO.builder()
+                    .title(title)
+                    .text(message)
+                    .build();
+
+            List<Attachment> attachments = List.of(slackMessageDTO.parseAttachment());
+
+            Slack slack = Slack.getInstance();
+
+            try {
+                slack.methods(slackProperty.getToken()).chatPostMessage(request ->
+                        request.channel(channel.name()).attachments(attachments));
+            } catch (Exception exception) {
+                log.error("Failed to send Slack message: {}", exception.getMessage(), exception);
+            }
+        }
+    }
+
     private String messageInStackTrace(Exception e) {
         String filteredStackTrace = Arrays.stream(e.getStackTrace())
                 .filter(stackTraceElement -> stackTraceElement.getClassName().contains("com.arms"))
