@@ -39,14 +39,15 @@ public class 암스스케쥴러 {
         }
     }
 
-    @Scheduled(cron="0 0 3 * * *") // 매일 오전 03(새벽)시에 실행
+
+    // 최초 한번 실행은 직접 실행으로 한다.
     public void 각_제품서비스_별_요구사항이슈_조회_및_ES저장() {
         log.info("[ 암스스케쥴러 :: 각_제품서비스_별_요구사항이슈_조회_및_ES저장 ] 동작 : {}", Calendar.getInstance().getTime());
         String 결과 = 내부통신기.각_제품서비스_별_요구사항이슈_조회_및_ES저장();
         log.info(결과.toString());
     }
 
-    /* 스케줄러 적용 필요 */
+    @Scheduled(cron="0 0 3 * * *") // 매일 오전 03(새벽)시에 실행
     public void 각_제품서비스_별_요구사항_증분이슈_조회_및_ES저장() {
         log.info("[ 암스스케쥴러 :: 각_제품서비스_별_요구사항_증분이슈_조회_및_ES저장 ] 동작 : {}", Calendar.getInstance().getTime());
         String 결과 = 내부통신기.각_제품서비스_별_요구사항_증분이슈_조회_및_ES저장();
