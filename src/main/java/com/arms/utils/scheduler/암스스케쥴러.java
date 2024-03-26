@@ -1,7 +1,5 @@
 package com.arms.utils.scheduler;
 
-import com.arms.notification.slack.SlackNotificationService;
-import com.arms.notification.slack.SlackProperty;
 import com.arms.utils.external_communicate.*;
 import com.arms.utils.external_communicate.vo.서버정보_엔티티;
 import lombok.RequiredArgsConstructor;
@@ -17,19 +15,16 @@ import java.util.Calendar;
 public class 암스스케쥴러 {
 
     private final 내부통신기 내부통신기;
-    private final SlackNotificationService slackNotificationService;
 
     @Scheduled(cron="0 0 1 * * *") // 매일 오전 01(새벽)시에 실행
     public void 서버정보백업_스케줄러() {
         String startMessage = String.format("[ 암스스케쥴러 :: 서버정보백업_스케줄러 ] 동작 시작 : %s", Calendar.getInstance().getTime());
         log.info(startMessage);
-        slackNotificationService.sendMessageToChannel(SlackProperty.Channel.schedule, startMessage);
 
         Iterable<서버정보_엔티티> 결과 = 내부통신기.서버정보백업_스케줄러();
 
         String endMessage = String.format("[ 암스스케쥴러 :: 서버정보백업_스케줄러 ] 동작 종료 : %s", Calendar.getInstance().getTime()) + "\n\n" + 결과.toString();
         log.info(endMessage);
-        slackNotificationService.sendMessageToChannel(SlackProperty.Channel.schedule, endMessage);
     }
 
     // @Scheduled(cron="0 30 1 * * *") // 매일 오전 01(새벽)시 30분에 실행
@@ -49,13 +44,11 @@ public class 암스스케쥴러 {
     public void 각_제품서비스_별_요구사항이슈_조회_및_ES저장() {
         String startMessage = String.format("[ 암스스케쥴러 :: 각_제품서비스_별_요구사항이슈_조회_및_ES저장 ] 동작 시작 : %s", Calendar.getInstance().getTime());
         log.info(startMessage);
-        slackNotificationService.sendMessageToChannel(SlackProperty.Channel.schedule, startMessage);
 
         String 결과 = 내부통신기.각_제품서비스_별_요구사항이슈_조회_및_ES저장();
 
         String endMessage = String.format("[ 암스스케쥴러 :: 각_제품서비스_별_요구사항이슈_조회_및_ES저장 ] 동작 종료 : %s", Calendar.getInstance().getTime()) + "\n\n" + 결과.toString();
         log.info(endMessage);
-        slackNotificationService.sendMessageToChannel(SlackProperty.Channel.schedule, endMessage);
     }
 
     @Scheduled(cron="0 0 3 * * *") // 매일 오전 03(새벽)시에 실행
@@ -69,12 +62,10 @@ public class 암스스케쥴러 {
     public void 각_제품서비스_별_요구사항_Status_업데이트_From_ES() {
         String startMessage = String.format("[ 암스스케쥴러 :: 각_제품서비스_별_요구사항_Status_업데이트_From_ES ] 동작 시작 : %s", Calendar.getInstance().getTime());
         log.info(startMessage);
-        slackNotificationService.sendMessageToChannel(SlackProperty.Channel.schedule, startMessage);
 
         String 결과 = 내부통신기.각_제품서비스_별_요구사항_Status_업데이트_From_ES();
 
         String endMessage = String.format("[ 암스스케쥴러 :: 각_제품서비스_별_요구사항_Status_업데이트_From_ES ] 동작 종료 : %s", Calendar.getInstance().getTime()) + "\n\n" + 결과.toString();
         log.info(endMessage);
-        slackNotificationService.sendMessageToChannel(SlackProperty.Channel.schedule, endMessage);
     }
 }
