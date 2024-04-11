@@ -92,3 +92,9 @@ logging:
 ribbon:
   eureka:
     enabled: false
+
+slack:
+  service-name: ${spring.application.name}
+  token: xoxb-6506875664277-6522692878945-HskjLlwVilRWrFqfWdyI2E4y
+  profile: ${spring.profiles.active}
+  url: https://slack.com/
