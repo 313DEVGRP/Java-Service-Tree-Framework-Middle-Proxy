@@ -1,6 +1,8 @@
 package com.arms.error;
 
 
+import com.arms.notification.slack.SlackNotificationService;
+import com.arms.notification.slack.SlackProperty;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.oauth2.client.ClientAuthorizationException;
@@ -21,6 +23,8 @@ import static com.arms.api.response.CommonResponse.error;
 @ControllerAdvice
 @RequiredArgsConstructor
 public class ErrorControllerAdvice {
+
+  private final SlackNotificationService slackNotificationService;
 
   @ExceptionHandler(value = ClientAuthorizationException.class)
   public Mono<?> onException() {
@@ -62,6 +66,7 @@ public class ErrorControllerAdvice {
 
   @ExceptionHandler(Exception.class)
   public <E> ResponseEntity<ApiResult<E>> handleAllException(Exception e) {
+    slackNotificationService.sendMessageToChannel(SlackProperty.Channel.middleproxy, e);
     return newResponse(e.getMessage(), ErrorCode.COMMON_SYSTEM_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
   }
 
