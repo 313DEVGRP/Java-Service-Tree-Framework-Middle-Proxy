@@ -24,6 +24,9 @@ server:
   port: 13131
   address: 0.0.0.0
 
+logging:
+  config: classpath:logback/logback-${spring.profiles.active}.xml
+
 io:
   netty:
     resolver:
