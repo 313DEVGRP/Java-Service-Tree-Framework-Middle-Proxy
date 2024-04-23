@@ -30,7 +30,7 @@ public class ScheduleController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @RequestMapping(value = "/auth-anon/schedule/server_info_backup", method = RequestMethod.GET)
+    @RequestMapping(value = "/auth-sche/schedule/server_info_backup", method = RequestMethod.GET)
     @ResponseBody
     public Iterable<서버정보_엔티티> 서버정보백업_스케줄러() {
 
@@ -39,7 +39,7 @@ public class ScheduleController {
         return 결과;
     }
 
-    @RequestMapping(value = "/auth-anon/schedule/jiraissue_index_backup", method = RequestMethod.GET)
+    @RequestMapping(value = "/auth-sche/schedule/jiraissue_index_backup", method = RequestMethod.GET)
     @ResponseBody
     public boolean 지라이슈_인덱스백업() {
 
@@ -48,7 +48,7 @@ public class ScheduleController {
         return 결과;
     }
 
-    @RequestMapping(value = "/auth-anon/schedule/reqissue_es_store", method = RequestMethod.GET)
+    @RequestMapping(value = "/auth-sche/schedule/reqissue_es_store", method = RequestMethod.GET)
     @ResponseBody
     public String 각_제품서비스_별_요구사항이슈_조회_및_ES저장() {
 
@@ -57,7 +57,7 @@ public class ScheduleController {
         return 결과;
     }
 
-    @RequestMapping(value = "/auth-anon/schedule/increment/reqissue_es_store", method = RequestMethod.GET)
+    @RequestMapping(value = "/auth-sche/schedule/increment/reqissue_es_store", method = RequestMethod.GET)
     @ResponseBody
     public String 각_제품서비스_별_요구사항_증분이슈_조회_및_ES저장() {
         long 시작시간 = System.currentTimeMillis();
@@ -73,7 +73,7 @@ public class ScheduleController {
         return 결과;
     }
 
-    @RequestMapping(value = "/auth-anon/schedule/issue_es_load", method = RequestMethod.GET)
+    @RequestMapping(value = "/auth-sche/schedule/issue_es_load", method = RequestMethod.GET)
     @ResponseBody
     public String 각_제품서비스_별_요구사항_Status_업데이트_From_ES() {
 

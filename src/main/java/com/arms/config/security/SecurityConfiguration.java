@@ -60,6 +60,7 @@ public class SecurityConfiguration {
                                 .pathMatchers("/engine-search-api/**").permitAll()
                                 .pathMatchers("/dwr/**").permitAll()
                                 .pathMatchers("/auth-anon/**").permitAll()
+                                .pathMatchers("/auth-sche/**").permitAll()
                                 .pathMatchers("/auth-user/**","/auth-check/**").hasAnyRole("USER", "ADMIN")
                                 .pathMatchers("/auth-admin/**").hasRole("ADMIN")
                                 .anyExchange().authenticated()
