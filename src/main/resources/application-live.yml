@@ -4,6 +4,13 @@ spring:
   redis:
     host: redis
     port: 6379
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 5
+        max-wait: 1ms
+        time-between-eviction-runs: 10
   sleuth:
     enabled: true
     sampler:
