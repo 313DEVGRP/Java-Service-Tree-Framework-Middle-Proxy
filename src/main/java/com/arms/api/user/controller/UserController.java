@@ -37,7 +37,7 @@ public class UserController {
 
   }
 
-  @GetMapping("/auth-sche/session-id")
+  @GetMapping("/auth-user/session-id")
   public Mono<String> sessionId(ServerWebExchange exchange) {
     Mono<WebSession> sessionMono = exchange.getSession();
     return sessionMono.map(WebSession::getId);
