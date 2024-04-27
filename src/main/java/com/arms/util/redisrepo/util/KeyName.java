@@ -1,4 +1,4 @@
-package com.arms.utils.redisrepo.util;
+package com.arms.util.redisrepo.util;
 
 public class KeyName {
 

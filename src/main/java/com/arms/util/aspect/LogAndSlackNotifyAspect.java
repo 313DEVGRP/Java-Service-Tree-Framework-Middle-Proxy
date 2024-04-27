@@ -1,4 +1,4 @@
-package com.arms.utils.aop;
+package com.arms.util.aspect;
 
 import com.arms.notification.slack.SlackNotificationService;
 import com.arms.notification.slack.SlackProperty;
@@ -20,7 +20,7 @@ public class LogAndSlackNotifyAspect {
     private final SlackNotificationService slackNotificationService;
 
 
-    @Around("@annotation(com.arms.utils.aop.LogAndSlackNotify)")
+    @Around("@annotation(com.arms.util.aspect.LogAndSlackNotify)")
     public Object logAndSlackNotify(ProceedingJoinPoint joinPoint) throws Throwable {
         String methodName = joinPoint.getSignature().getName();
         String startMessage = String.format("[ 암스스케쥴러 :: %s ] 동작 시작 : %s", methodName, Calendar.getInstance().getTime());

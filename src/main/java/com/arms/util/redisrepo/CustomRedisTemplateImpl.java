@@ -1,6 +1,6 @@
-package com.arms.utils.redisrepo;
+package com.arms.util.redisrepo;
 
-import com.arms.utils.redisrepo.util.KeyName;
+import com.arms.util.redisrepo.util.KeyName;
 import lombok.AllArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ScanOptions;

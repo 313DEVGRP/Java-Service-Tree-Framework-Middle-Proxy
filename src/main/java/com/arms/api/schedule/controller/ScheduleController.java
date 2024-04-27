@@ -1,23 +1,16 @@
-package com.arms.api.controller;
+package com.arms.api.schedule.controller;
 
-import com.arms.config.*;
-import com.arms.utils.external_communicate.vo.서버정보_엔티티;
-import com.arms.utils.external_communicate.내부통신기;
-import org.keycloak.admin.client.resource.UserProfileResource;
-import org.keycloak.representations.idm.UserRepresentation;
+import com.arms.util.external_communicate.vo.서버정보_엔티티;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.arms.utils.external_communicate.*;
+import com.arms.util.external_communicate.*;
 
 import java.util.Calendar;
-import java.util.List;
 
 @Controller
 public class ScheduleController {

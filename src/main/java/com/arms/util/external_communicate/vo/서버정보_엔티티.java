@@ -1,4 +1,4 @@
-package com.arms.utils.external_communicate.vo;
+package com.arms.util.external_communicate.vo;
 
 import lombok.*;
 

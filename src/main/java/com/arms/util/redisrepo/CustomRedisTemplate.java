@@ -1,4 +1,4 @@
-package com.arms.utils.redisrepo;
+package com.arms.util.redisrepo;
 
 import java.util.List;
 

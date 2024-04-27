@@ -1,6 +1,6 @@
-package com.arms.utils.external_communicate;
+package com.arms.util.external_communicate;
 
-import com.arms.utils.external_communicate.vo.서버정보_엔티티;
+import com.arms.util.external_communicate.vo.서버정보_엔티티;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 

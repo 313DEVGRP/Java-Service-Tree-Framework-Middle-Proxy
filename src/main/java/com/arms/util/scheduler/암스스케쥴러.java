@@ -1,10 +1,10 @@
-package com.arms.utils.scheduler;
+package com.arms.util.scheduler;
 
 import com.arms.notification.slack.SlackNotificationService;
 import com.arms.notification.slack.SlackProperty;
-import com.arms.utils.aop.LogAndSlackNotify;
-import com.arms.utils.external_communicate.*;
-import com.arms.utils.external_communicate.vo.서버정보_엔티티;
+import com.arms.util.aspect.LogAndSlackNotify;
+import com.arms.util.external_communicate.*;
+import com.arms.util.external_communicate.vo.서버정보_엔티티;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;

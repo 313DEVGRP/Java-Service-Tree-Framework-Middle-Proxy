@@ -1,4 +1,4 @@
-package com.arms.utils.aop;
+package com.arms.util.aspect;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

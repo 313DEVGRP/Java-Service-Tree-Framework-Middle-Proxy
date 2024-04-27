@@ -1,4 +1,4 @@
-package com.arms.api.response;
+package com.arms.util.errors.response;
 
 /*
  * @author Dongmin.lee

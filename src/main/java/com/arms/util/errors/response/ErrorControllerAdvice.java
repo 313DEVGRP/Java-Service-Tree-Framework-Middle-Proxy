@@ -1,4 +1,4 @@
-package com.arms.error;
+package com.arms.util.errors.response;
 
 
 import com.arms.notification.slack.SlackNotificationService;
@@ -10,15 +10,14 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
-import com.arms.api.response.CommonResponse.ApiResult;
-import com.arms.api.response.ErrorCode;
+import com.arms.util.response.CommonResponse.ApiResult;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.support.WebExchangeBindException;
 
-import static com.arms.api.response.CommonResponse.error;
+import static com.arms.util.response.CommonResponse.error;
 
 @ControllerAdvice
 @RequiredArgsConstructor

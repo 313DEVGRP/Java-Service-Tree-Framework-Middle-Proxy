@@ -1,4 +1,4 @@
-package com.arms.api.controller;
+package com.arms.api.user.controller;
 
 import com.nimbusds.jwt.JWT;
 import com.nimbusds.jwt.JWTParser;
@@ -37,8 +37,8 @@ public class UserController {
 
   }
 
-  @GetMapping("/auth-user/session-id")
-  public Mono<String> sessionId(ServerWebExchange exchange){
+  @GetMapping("/auth-sche/session-id")
+  public Mono<String> sessionId(ServerWebExchange exchange) {
     Mono<WebSession> sessionMono = exchange.getSession();
     return sessionMono.map(WebSession::getId);
   }

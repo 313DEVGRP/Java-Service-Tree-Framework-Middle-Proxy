@@ -1,4 +1,4 @@
-package com.arms.api.response;
+package com.arms.util.response;
 
 /*
  * @author Dongmin.lee
@@ -11,6 +11,7 @@ package com.arms.api.response;
  *  Written by 313 developer group <313@313.co.kr>, December 2010
  * </pre>
  */
+import com.arms.util.errors.response.ErrorCode;
 import lombok.Getter;
 import lombok.ToString;
 import org.springframework.http.HttpStatus;
