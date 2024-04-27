@@ -45,6 +45,7 @@ public class UserController {
 
   @GetMapping("/auth-user/me")
   public Mono<Map<String,Object>> getUser(
+      ServerWebExchange exchange,
       @ApiIgnore @RegisteredOAuth2AuthorizedClient OAuth2AuthorizedClient auth2AuthorizedClient)
       throws ParseException {
 

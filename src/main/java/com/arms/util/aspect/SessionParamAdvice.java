@@ -14,6 +14,7 @@ import reactor.core.publisher.Mono;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Aspect
@@ -35,7 +36,10 @@ public class SessionParamAdvice {
 
         Object[] args = joinPoint.getArgs();
 
-        ServerWebExchange exchange = (ServerWebExchange) args[0];
+        ServerWebExchange exchange = (ServerWebExchange)Arrays.stream(args)
+            .filter(a -> a instanceof ServerWebExchange)
+            .findFirst()
+            .orElse(null);
 
         String methodName
                 = Arrays.stream(joinPoint.getSignature().toLongString().split(" ")).skip(1).collect(Collectors.joining(" "));
@@ -43,24 +47,20 @@ public class SessionParamAdvice {
             return joinPoint.proceed();
         }catch (Exception e){
             slackNotificationService.sendMessageToChannel(SlackProperty.Channel.middleproxy, e);
-
-            return exchange.getSession()
+            Optional.ofNullable(exchange).ifPresent(a->{
+                a.getSession()
                 .flatMap(session -> {
                     slackNotificationService.sendMessageToChannel(SlackProperty.Channel.middleproxy, e);
                     StringWriter errors = new StringWriter();
                     e.printStackTrace(new PrintWriter(errors));
-
-                    if(args.length>0){
-                        for (Object arg : args) {
+                    Arrays.stream(args).filter(arg->!(arg instanceof ServerWebExchange))
+                        .forEach(arg->{
                             log.error("{} Error 발생\tmethodName : {}\tsession    : {}\tparameter   : {}\terrorMsg    : {}",appName,methodName,session.getId(),arg,errors);
-                        }
-                    }else{
-                        log.error("{} Error 발생\tmethodName : {}\tsession    : {}\terrorMsg    : {}",appName,methodName,session.getId(),errors);
-                    }
-
-                    return Mono.error(e);
-                });
+                        });
+                    return Mono.empty();
+                }).subscribe();
+            });
+            throw e;
         }
-
     }
 }

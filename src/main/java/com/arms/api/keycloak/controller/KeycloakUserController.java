@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.server.ServerWebExchange;
+
 import reactor.core.publisher.Mono;
 
 import java.util.List;
@@ -21,6 +23,7 @@ public class KeycloakUserController {
     @GetMapping("/auth-user/search-user/{userName}")
     @ResponseBody
     public Mono<List<UserRepresentation>> getUser(
+        ServerWebExchange exchange,
         @PathVariable("userName") String userName
     ) {
         log.info("userName -> " + userName);
@@ -31,7 +34,7 @@ public class KeycloakUserController {
 
     @GetMapping("/auth-user/users")
     @ResponseBody
-    public Mono<List<UserRepresentation>> getUsers() {
+    public Mono<List<UserRepresentation>> getUsers(ServerWebExchange exchange) {
         List<UserRepresentation> userRepresentations = realmResource.users().list();
         return Mono.just(userRepresentations);
     }
