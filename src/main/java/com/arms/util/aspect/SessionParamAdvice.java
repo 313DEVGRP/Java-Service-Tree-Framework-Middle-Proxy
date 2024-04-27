@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 @Aspect
-@Component
+// @Component
 @Slf4j
 public class SessionParamAdvice {
 
