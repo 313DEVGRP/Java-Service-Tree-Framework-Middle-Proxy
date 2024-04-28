@@ -18,7 +18,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Aspect
-// @Component
+@Component
 @Slf4j
 public class SessionParamAdvice {
 
@@ -44,22 +44,23 @@ public class SessionParamAdvice {
         String methodName
                 = Arrays.stream(joinPoint.getSignature().toLongString().split(" ")).skip(1).collect(Collectors.joining(" "));
         try{
-            return joinPoint.proceed();
+            Object proceed = joinPoint.proceed();
+            return proceed;
         }catch (Exception e){
             slackNotificationService.sendMessageToChannel(SlackProperty.Channel.middleproxy, e);
-            Optional.ofNullable(exchange).ifPresent(a->{
-                a.getSession()
-                .flatMap(session -> {
-                    slackNotificationService.sendMessageToChannel(SlackProperty.Channel.middleproxy, e);
-                    StringWriter errors = new StringWriter();
-                    e.printStackTrace(new PrintWriter(errors));
-                    Arrays.stream(args).filter(arg->!(arg instanceof ServerWebExchange))
-                        .forEach(arg->{
-                            log.error("{} Error 발생\tmethodName : {}\tsession    : {}\tparameter   : {}\terrorMsg    : {}",appName,methodName,session.getId(),arg,errors);
-                        });
-                    return Mono.empty();
-                }).subscribe();
-            });
+            StringWriter errors = new StringWriter();
+            e.printStackTrace(new PrintWriter(errors));
+            String parameters = Arrays.stream(args).map(String::valueOf).collect(Collectors.joining("\t"));
+            Optional.ofNullable(exchange)
+                .ifPresentOrElse(a->{
+                     a.getSession()
+                        .flatMap(session -> {
+                            log.error("{} Error 발생\tmethodName : {}\tsession    : {}\tparameter   : {}\terrorMsg    : {}",appName,methodName,session.getId(),parameters,errors);
+                            return Mono.empty();
+                        }).subscribe();
+                },()->{
+                    log.error("{} Error 발생\tmethodName : {}\tparameter   : {}\terrorMsg    : {}",appName,methodName,parameters,errors);
+                });
             throw e;
         }
     }
