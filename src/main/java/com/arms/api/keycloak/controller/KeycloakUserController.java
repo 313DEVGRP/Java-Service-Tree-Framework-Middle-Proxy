@@ -20,6 +20,7 @@ import java.util.List;
 public class KeycloakUserController {
 
     private final RealmResource realmResource;
+
     @GetMapping("/auth-user/search-user/{userName}")
     @ResponseBody
     public Mono<List<UserRepresentation>> getUser(
