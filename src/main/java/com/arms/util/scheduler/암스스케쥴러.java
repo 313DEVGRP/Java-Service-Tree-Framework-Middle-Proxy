@@ -19,6 +19,8 @@ public class 암스스케쥴러 {
 
     private final 내부통신기 내부통신기;
 
+    private final 엔진통신기 엔진통신기;
+
     private final SlackNotificationService slackNotificationService;
 
     @LogAndSlackNotify
@@ -42,7 +44,6 @@ public class 암스스케쥴러 {
         }
     }
 
-
     // 최초 한번 실행은 직접 실행으로 한다.
     @LogAndSlackNotify
     public void 각_제품서비스_별_요구사항이슈_조회_및_ES저장() {
@@ -62,5 +63,11 @@ public class 암스스케쥴러 {
     public void 각_제품서비스_별_요구사항_Status_업데이트_From_ES() {
         String 결과 = 내부통신기.각_제품서비스_별_요구사항_Status_업데이트_From_ES();
         log.info(결과);
+    }
+
+    @Scheduled(fixedDelay = 45000, initialDelay = 10000)
+    public void 커넥션_상태_유지() {
+        log.info("커넥션_상태_유지");
+        엔진통신기.커넥션_상태_유지();
     }
 }
