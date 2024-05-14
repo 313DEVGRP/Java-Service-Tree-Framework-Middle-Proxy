@@ -24,7 +24,7 @@ server:
   port: 13131
   address: 0.0.0.0
   netty:
-    idle-timeout: 60000 #60 sec
+    idle-timeout: 300000 #300 sec
 
 logging:
   config: classpath:logback/logback-${spring.profiles.active}.xml
