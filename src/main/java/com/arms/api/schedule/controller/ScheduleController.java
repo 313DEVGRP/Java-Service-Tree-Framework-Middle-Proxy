@@ -4,6 +4,7 @@ import com.arms.util.external_communicate.vo.서버정보_엔티티;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,6 +31,7 @@ public class ScheduleController {
 
     @RequestMapping(value = "/auth-sche/schedule/server_info_backup", method = RequestMethod.GET)
     @ResponseBody
+    @Async
     public Iterable<서버정보_엔티티> 서버정보백업_스케줄러(ServerWebExchange exchange){
 
         logger.info("[ 암스스케쥴러 :: 서버정보백업_스케줄러 ] 동작 : {}", Calendar.getInstance().getTime());
@@ -39,6 +41,7 @@ public class ScheduleController {
 
     @RequestMapping(value = "/auth-sche/schedule/jiraissue_index_backup", method = RequestMethod.GET)
     @ResponseBody
+    @Async
     public boolean 지라이슈_인덱스백업(ServerWebExchange exchange) {
 
         logger.info("[ 암스스케쥴러 :: 지라이슈_인덱스백업 ] 동작 : {}", Calendar.getInstance().getTime());
@@ -48,6 +51,7 @@ public class ScheduleController {
 
     @RequestMapping(value = "/auth-sche/schedule/reqissue_es_store", method = RequestMethod.GET)
     @ResponseBody
+    @Async
     public String 각_제품서비스_별_요구사항이슈_조회_및_ES저장(ServerWebExchange exchange) {
 
         logger.info("[ 암스스케쥴러 :: 각_제품서비스_별_요구사항이슈_조회_및_ES저장 ] 동작 : {}", Calendar.getInstance().getTime());
@@ -57,6 +61,7 @@ public class ScheduleController {
 
     @RequestMapping(value = "/auth-sche/schedule/increment/reqissue_es_store", method = RequestMethod.GET)
     @ResponseBody
+    @Async
     public String 각_제품서비스_별_요구사항_증분이슈_조회_및_ES저장(ServerWebExchange exchange) {
         long 시작시간 = System.currentTimeMillis();
 
@@ -73,6 +78,7 @@ public class ScheduleController {
 
     @RequestMapping(value = "/auth-sche/schedule/issue_es_load", method = RequestMethod.GET)
     @ResponseBody
+    @Async
     public String 각_제품서비스_별_요구사항_Status_업데이트_From_ES(ServerWebExchange exchange) {
 
         logger.info("[ 암스스케쥴러 :: 각_제품서비스_별_요구사항_Status_업데이트_From_ES ] 동작 : {}", Calendar.getInstance().getTime());
