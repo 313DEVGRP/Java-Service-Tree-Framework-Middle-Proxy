@@ -15,4 +15,6 @@ public interface 백엔드코어통신기 {
     @GetMapping("/arms/scheduler/pdservice/reqstatus/updateFromES")
     String 각_제품서비스_별_요구사항_Status_업데이트_From_ES();
 
+    @GetMapping("/arms/scheduler/pdservice/reqstatus/recreateFailedReqIssue")
+    String 각_제품서비스_별_생성실패한_ALM_요구사항_이슈_재생성();
 }

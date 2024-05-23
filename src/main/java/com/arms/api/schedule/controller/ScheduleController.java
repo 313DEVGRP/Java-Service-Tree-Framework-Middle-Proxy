@@ -81,6 +81,15 @@ public class ScheduleController {
         return 결과;
     }
 
+    @RequestMapping(value = "/auth-sche/schedule/recreate_failed_reqissue", method = RequestMethod.GET)
+    @ResponseBody
+    public String 각_제품서비스_별_생성실패한_ALM_요구사항_이슈_재생성(ServerWebExchange exchange) {
+
+        logger.info("[ 암스스케쥴러 :: 각_제품서비스_별_생성실패한_ALM_요구사항_이슈_재생성 ] 동작 : {}", Calendar.getInstance().getTime());
+        String 결과 = 백엔드코어통신기.각_제품서비스_별_생성실패한_ALM_요구사항_이슈_재생성();
+        return 결과;
+    }
+
     @Data
     public static class DTO{
         private String key;
