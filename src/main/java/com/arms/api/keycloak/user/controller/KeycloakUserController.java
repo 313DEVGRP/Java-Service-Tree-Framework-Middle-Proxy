@@ -1,4 +1,4 @@
-package com.arms.api.keycloak.controller;
+package com.arms.api.keycloak.user.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
