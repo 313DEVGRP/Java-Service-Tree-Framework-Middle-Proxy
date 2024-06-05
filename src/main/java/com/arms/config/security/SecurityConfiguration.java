@@ -57,7 +57,7 @@ public class SecurityConfiguration {
                                 .pathMatchers("/backend-core-api/**").permitAll()
                                 .pathMatchers("/engine-fire-api").permitAll()
                                 .pathMatchers("/engine-fire-api/**").permitAll()
-                                .pathMatchers("/engine-search-api/**").permitAll()
+                                .pathMatchers("/engine-search-api/**").hasAnyRole("USER", "MANAGER", "ADMIN")
                                 .pathMatchers("/dwr/**").permitAll()
                                 .pathMatchers("/auth-anon/**","/auth-sche/**").permitAll()
                                 .pathMatchers("/auth-user/**","/auth-check/**").hasAnyRole("USER", "MANAGER", "ADMIN")
