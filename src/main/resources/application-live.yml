@@ -64,7 +64,7 @@ spring:
           filters:
             - RewritePath=/auth-admin/api/(?<path>.*), /admin/$\{path}
 
-        #아래는 ADMIN 권한 호출이 가능하므로 주의해서 사용해야 합니다.
+        #아래는 DWR 권한 호출이 가능하므로 주의해서 사용해야 합니다.
         - id: javaServiceTreeFramework-BackendCore-DWR
           uri: http://backend-core:31313/dwr
           predicates:
