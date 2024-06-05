@@ -35,6 +35,8 @@ spring:
             - Path=/auth-anon/**
           filters:
             - RewritePath=/auth-anon/api/(?<path>.*), /anonymous/$\{path}
+            - name: BlockRequestGatewayFilter
+            - RemoveRequestHeader=Cookie
 
         #아래는 USER 권한 호출이 가능하므로 주의해서 사용해야 합니다.
         - id: javaServiceTreeFramework-BackendCore-AuthUser
