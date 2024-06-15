@@ -7,6 +7,7 @@ import org.springframework.data.redis.core.ScanOptions;
 import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,11 +18,14 @@ public class CustomRedisTemplateImpl implements CustomRedisTemplate{
     private final RedisTemplate<String,Object> redisTemplate;
     @Override
     public List<String> scan(String id) {
+        if (redisTemplate.getConnectionFactory() == null) {
+            return Collections.emptyList();
+        }
+
         return redisTemplate.getConnectionFactory().getConnection()
                 .scan(ScanOptions.scanOptions().match(id).count(200).build())
                 .stream()
                 .map(a -> new KeyName(new String(a, StandardCharsets.UTF_8)).get())
                 .collect(Collectors.toList());
     }
-
 }

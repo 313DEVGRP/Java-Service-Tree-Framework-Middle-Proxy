@@ -5,7 +5,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-@FeignClient(name = "engine-fire", url = "http://engine-fire:33333")
+@FeignClient(name = "engine-fire", url = "${arms.engine.url}")
 public interface 엔진통신기 {
 
     @PostMapping("/engine/jira/0/issue/index/backup")
