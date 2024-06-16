@@ -1,4 +1,4 @@
-package com.arms.notification.slack;
+package com.arms.util.slack;
 
 
 import com.slack.api.methods.SlackApiException;

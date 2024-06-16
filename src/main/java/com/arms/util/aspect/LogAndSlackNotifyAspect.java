@@ -1,7 +1,7 @@
 package com.arms.util.aspect;
 
-import com.arms.notification.slack.SlackNotificationService;
-import com.arms.notification.slack.SlackProperty;
+import com.arms.util.slack.SlackNotificationService;
+import com.arms.util.slack.SlackProperty;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;

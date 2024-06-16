@@ -1,8 +1,8 @@
 package com.arms.util.errors.response;
 
 
-import com.arms.notification.slack.SlackNotificationService;
-import com.arms.notification.slack.SlackProperty;
+import com.arms.util.slack.SlackNotificationService;
+import com.arms.util.slack.SlackProperty;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.oauth2.client.ClientAuthorizationException;
