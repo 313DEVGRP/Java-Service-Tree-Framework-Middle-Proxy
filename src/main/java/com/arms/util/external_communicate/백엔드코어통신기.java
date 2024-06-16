@@ -3,7 +3,7 @@ package com.arms.util.external_communicate;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@FeignClient(name = "backend-core", url = "http://backend-core:31313")
+@FeignClient(name = "backend-core", url = "${arms.backend.url}")
 public interface 백엔드코어통신기 {
 
     @GetMapping("/arms/scheduler/pdservice/reqstatus/loadToES")
