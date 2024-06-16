@@ -1,7 +1,7 @@
 package com.arms.util.scheduler;
 
-import com.arms.notification.slack.SlackNotificationService;
-import com.arms.notification.slack.SlackProperty;
+import com.arms.util.slack.SlackNotificationService;
+import com.arms.util.slack.SlackProperty;
 import com.arms.util.aspect.LogAndSlackNotify;
 import com.arms.util.external_communicate.*;
 import com.arms.util.external_communicate.vo.서버정보_엔티티;
