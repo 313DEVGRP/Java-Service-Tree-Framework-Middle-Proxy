@@ -80,7 +80,7 @@ public class 암스스케쥴러 {
     }
 
     @LogAndSlackNotify
-    @Scheduled(fixedDelay=10000) // 매일 09, 12,시, 15시, 18시, 21시 동작
+    @Scheduled(cron="0 0 9,12,15,18,21 * * *")// 매일 09, 12,시, 15시, 18시, 21시 동작
     @Async
     public void 각_제품서비스_별_생성실패한_ALM_요구사항_이슈_재생성() {
         String 결과 = 내부통신기.각_제품서비스_별_생성실패한_ALM_요구사항_이슈_재생성();
