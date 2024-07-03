@@ -1,0 +1,132 @@
+spring:
+  session:
+    store-type: redis
+  redis:
+    host: redis
+    port: 6379
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 5
+        max-wait: 1ms
+        time-between-eviction-runs: 10
+  sleuth:
+    enabled: true
+    sampler:
+      probability: 1.0
+  zipkin:
+    enabled: true
+    service.name: zipkin-service
+    sender.type: web
+    base-url: http://zipkin:9411
+  cloud:
+    gateway:
+      routes:
+        - id: javaServiceTreeFramework-BackendCore-Swagger
+          uri: http://backend-core:31313
+          predicates:
+            - Path=/backend-core-api/**
+        - id: javaServiceTreeFramework-EngineFire-Swagger
+          uri: http://engine-fire:33333
+          predicates:
+            - Path=/engine-fire-api/**
+
+        #아래는 권한없이 호출이 가능하므로 주의해서 사용해야 합니다.
+        - id: javaServiceTreeFramework-BackendCore-AuthAnon
+          uri: http://backend-core:31313
+          predicates:
+            - Path=/auth-anon/**
+          filters:
+            - RewritePath=/auth-anon/api/(?<path>.*), /anonymous/$\{path}
+            - name: BlockRequestGatewayFilter
+            - RemoveRequestHeader=Cookie
+
+        #아래는 USER 권한 호출이 가능하므로 주의해서 사용해야 합니다.
+        - id: javaServiceTreeFramework-BackendCore-AuthUser
+          uri: http://backend-core:31313
+          predicates:
+            - Path=/auth-user/**
+          filters:
+            - RewritePath=/auth-user/api/(?<path>.*), /$\{path}
+
+        #아래는 MANAGER 권한 호출이 가능하므로 주의해서 사용해야 합니다.
+        - id: javaServiceTreeFramework-BackendCore-ManagerUser
+          uri: http://backend-core:31313
+          predicates:
+            - Path=/auth-manager/**
+          filters:
+            - RewritePath=/auth-manager/api/(?<path>.*), /manager/$\{path}
+
+        #아래는 ADMIN 권한 호출이 가능하므로 주의해서 사용해야 합니다.
+        - id: javaServiceTreeFramework-BackendCore-AdminUser
+          uri: http://backend-core:31313
+          predicates:
+            - Path=/auth-admin/**
+          filters:
+            - RewritePath=/auth-admin/api/(?<path>.*), /admin/$\{path}
+
+        #아래는 DWR 권한 호출이 가능하므로 주의해서 사용해야 합니다.
+        - id: javaServiceTreeFramework-BackendCore-DWR
+          uri: http://backend-core:31313/dwr
+          predicates:
+            - Path=/dwr/**
+          filters:
+            - RewritePath=/(?<path>.*), /$\{path}
+
+        - id: javaServiceTreeFramework-EngineFire-Search
+          uri: http://engine-fire:33333
+          predicates:
+            - Path=/engine-search-api/**
+          filters:
+            - RewritePath=/engine-search-api/(?<path>.*), /$\{path}
+  security:
+    auth:
+      success:
+        redirect-url: /arms/template.html?page=pdService
+
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://${ARMS_BASE_ADDR}/auth/realms/master
+            token-uri: http://${ARMS_BASE_ADDR}/auth/realms/master/protocol/openid-connect/token
+            authorization-uri: http://${ARMS_BASE_ADDR}/auth/realms/master/protocol/openid-connect/auth
+            user-info-uri: http://${ARMS_BASE_ADDR}/auth/realms/master/protocol/openid-connect/userinfo
+            jwk-set-uri: http://${ARMS_BASE_ADDR}/auth/realms/master/protocol/openid-connect/certs
+            user-name-attribute: preferred_username
+
+        registration:
+          middle-proxy:
+            scope: openid
+            realm: master
+            server-url: http://${ARMS_BASE_ADDR}/auth
+            provider: keycloak
+            client-id: Java-Service-Tree-Framework-Middle-Proxy
+            client-secret: f1011641-e4d4-4dc8-b177-7834fcf7d041
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/middle-proxy"
+  main:
+    web-application-type: reactive
+
+backendURL : http://backend-core:31313
+
+logging:
+  level:
+    org.springframework.cloud.gateway: info
+
+ribbon:
+  eureka:
+    enabled: false
+
+arms:
+  backend:
+    url: http://backend-core:31313
+  engine:
+    url: http://engine-fire:33333
+
+slack:
+  service-name: ${spring.application.name}
+  token: xoxb-6506875664277-6522692878945-HskjLlwVilRWrFqfWdyI2E4y
+  profile: ${spring.profiles.active}
+  url: https://slack.com/
