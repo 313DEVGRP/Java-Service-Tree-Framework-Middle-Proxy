@@ -3,7 +3,7 @@ spring:
     store-type: redis
   # Redis-x64-3.2.100 \ redis-server.exe 실행
   redis:
-    host: 127.0.0.1
+    host: www.313.co.kr
     port: 6379
     lettuce:
       pool:
@@ -16,6 +16,11 @@ spring:
     enabled: true
     sampler:
       probability: 1.0
+  zipkin:
+    enabled: false
+    service.name: zipkin-service
+    sender.type: web
+    base-url: http://zipkin:9411
   cloud:
     gateway:
       routes:
