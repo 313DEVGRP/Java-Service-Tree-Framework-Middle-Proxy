@@ -81,6 +81,12 @@ spring:
             - Path=/engine-search-api/**
           filters:
             - RewritePath=/engine-search-api/(?<path>.*), /$\{path}
+
+        - id: javaServiceTreeFramework-EngineFire-Search
+          uri: http://127.0.0.1:33133
+          predicates:
+            - Path=/auth-sche/**
+
   security:
     auth:
       success:
