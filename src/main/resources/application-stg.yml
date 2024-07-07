@@ -80,6 +80,12 @@ spring:
             - Path=/engine-search-api/**
           filters:
             - RewritePath=/engine-search-api/(?<path>.*), /$\{path}
+
+        - id: javaServiceTreeFramework-Global-Config-Schedule
+          uri: http://global-config:33133
+          predicates:
+            - Path=/auth-sche/**
+
   security:
     auth:
       success:
